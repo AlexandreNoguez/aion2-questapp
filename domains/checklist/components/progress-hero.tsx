@@ -5,6 +5,12 @@ import { ClassSelector } from "./class-selector";
 
 type Props = { period: ChecklistPeriod; summary: PeriodSummary; playerClass: PlayerClassId; onClassChange: (playerClass: PlayerClassId) => void };
 
+const PERIOD_LABELS: Record<ChecklistPeriod, string> = {
+  daily: "Ritual de hoje",
+  weekly: "Jornada da semana",
+  events: "Agenda de eventos",
+};
+
 export function ProgressHero({ period, summary, playerClass, onClassChange }: Props) {
   return (
     <Paper sx={{ position: "relative", overflow: "hidden", border: "1px solid rgba(149,183,203,.14)", borderRadius: { xs: 3, md: 4 }, bgcolor: "rgba(13,27,39,.88)", p: { xs: 2.5, md: 4 } }}>
@@ -15,7 +21,7 @@ export function ProgressHero({ period, summary, playerClass, onClassChange }: Pr
             <Box sx={{ display: "flex", alignItems: "center", minHeight: 32, px: 1.25, borderRadius: 5, bgcolor: "rgba(75,214,208,.09)", border: "1px solid rgba(75,214,208,.2)" }}><ClassSelector value={playerClass} onChange={onClassChange} /></Box>
             <Chip icon={<Clock3 size={14} />} label="Reset qua. · 04:00 BRT" size="small" variant="outlined" sx={{ borderColor: "divider", color: "text.secondary" }} />
           </Stack>
-          <Typography variant="overline" sx={{ color: "secondary.main", letterSpacing: ".14em", fontWeight: 800 }}>{period === "daily" ? "Ritual de hoje" : "Jornada da semana"}</Typography>
+          <Typography variant="overline" sx={{ color: "secondary.main", letterSpacing: ".14em", fontWeight: 800 }}>{PERIOD_LABELS[period]}</Typography>
           <Typography component="h1" sx={{ mt: .5, fontSize: { xs: "2rem", sm: "3rem", md: "3.55rem" }, fontWeight: 800, lineHeight: .98, letterSpacing: "-.05em", maxWidth: 600 }}>
             Cada missão conta.<br /><Box component="span" sx={{ color: "primary.main" }}>Nenhum limite perdido.</Box>
           </Typography>

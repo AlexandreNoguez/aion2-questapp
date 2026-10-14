@@ -1,4 +1,4 @@
-export type ChecklistPeriod = "daily" | "weekly";
+export type ChecklistPeriod = "daily" | "weekly" | "events";
 export type ChecklistFilter = "all" | "pending" | "done";
 export type PlayerClassId =
   | "gladiator"

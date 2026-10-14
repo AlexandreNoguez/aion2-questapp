@@ -1,6 +1,6 @@
 # AION 2 — Checklist
 
-Checklist responsivo de atividades diárias e semanais para AION 2. O progresso é salvo somente no `localStorage` do navegador.
+Checklist responsivo de atividades diárias, semanais e eventos para AION 2. O progresso é salvo somente no `localStorage` do navegador.
 
 O usuário também pode selecionar uma das oito classes disponíveis no AION 2 Global; a preferência fica salva junto com o checklist.
 
