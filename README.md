@@ -19,6 +19,8 @@ Para validar o bundle de produção:
 npm run build
 ```
 
+O projeto usa o runtime nativo do Next.js e pode ser implantado diretamente na Vercel. O build usa Webpack explicitamente para manter comportamento consistente entre o ambiente local e o CI.
+
 ## Estrutura
 
 - `app/`: entrada e metadados do Next.js
