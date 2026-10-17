@@ -33,8 +33,7 @@ function persistChecklist(completedIds: ReadonlySet<string>, playerClass: Player
   }
 }
 
-export function useChecklist(): { viewModel: ChecklistViewModel; actions: ChecklistActions } {
-  const [activePeriod, setActivePeriod] = useState<ChecklistPeriod>("daily");
+export function useChecklist(activePeriod: ChecklistPeriod): { viewModel: ChecklistViewModel; actions: ChecklistActions } {
   const [filter, setFilter] = useState<ChecklistFilter>("all");
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [playerClass, setPlayerClass] = useState<PlayerClassId>(DEFAULT_PLAYER_CLASS);
@@ -42,10 +41,13 @@ export function useChecklist(): { viewModel: ChecklistViewModel; actions: Checkl
   const [resetDialogOpen, setResetDialogOpen] = useState(false);
 
   useEffect(() => {
-    const stored = readStoredChecklist();
-    setCompletedIds(stored.completedIds);
-    setPlayerClass(stored.playerClass);
-    setIsHydrated(true);
+    const hydration = window.setTimeout(() => {
+      const stored = readStoredChecklist();
+      setCompletedIds(stored.completedIds);
+      setPlayerClass(stored.playerClass);
+      setIsHydrated(true);
+    }, 0);
+    return () => window.clearTimeout(hydration);
   }, []);
 
   useEffect(() => {
@@ -82,7 +84,6 @@ export function useChecklist(): { viewModel: ChecklistViewModel; actions: Checkl
   }, [activePeriod]);
 
   const actions = useMemo<ChecklistActions>(() => ({
-    setActivePeriod: (period) => { setActivePeriod(period); setFilter("all"); },
     setFilter,
     toggleQuest,
     setPlayerClass,

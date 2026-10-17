@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AION 2 — Checklist diário e semanal",
+  title: "AION 2 Companion — Checklist e guias",
   description:
-    "Organize as atividades diárias e semanais do seu Assassin em AION 2.",
+    "Organize atividades e consulte horários dos conteúdos do AION 2 Global.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

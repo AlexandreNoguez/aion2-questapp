@@ -1,5 +1,5 @@
-import { ChecklistDashboard } from "@/domains/checklist/components/checklist-dashboard";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <ChecklistDashboard />;
+  redirect("/checklist/diarias");
 }

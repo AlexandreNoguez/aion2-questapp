@@ -32,7 +32,6 @@ export type ChecklistViewModel = {
 };
 
 export type ChecklistActions = {
-  setActivePeriod: (period: ChecklistPeriod) => void;
   setFilter: (filter: ChecklistFilter) => void;
   toggleQuest: (id: string) => void;
   setPlayerClass: (playerClass: PlayerClassId) => void;

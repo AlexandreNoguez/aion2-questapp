@@ -20,6 +20,7 @@ const theme = createTheme({
   },
 });
 
-export function ChecklistTheme({ children }: PropsWithChildren) {
+export function AppTheme({ children }: PropsWithChildren) {
   return <ThemeProvider theme={theme}><CssBaseline />{children}</ThemeProvider>;
 }
+
