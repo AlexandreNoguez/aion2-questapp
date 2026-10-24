@@ -45,6 +45,7 @@ export const NAVIGATION_SECTIONS: NavigationSection[] = [
     defaultHref: "/conteudos",
     items: [
       { label: "Visão geral", href: "/conteudos", icon: CircleGauge, exact: true },
+      { label: "Agenda de eventos", href: "/agenda", icon: CalendarClock, exact: true },
       { label: "Fenda Espaço-Temporal", href: "/conteudos/fenda-espaco-temporal", icon: Repeat2 },
       { label: "Chefes", href: "/conteudos/chefes", icon: Swords },
       { label: "Shugo Festa", href: "/conteudos/shugo-festa", icon: PartyPopper },

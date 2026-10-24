@@ -56,3 +56,17 @@ export type GameContentViewModel = GameContent & {
   schedules: ScheduleViewModel[];
 };
 
+export type AgendaEvent = {
+  id: string;
+  title: string;
+  href: string;
+  imagePath: string | null;
+  rule: ScheduleRule;
+};
+
+export type AgendaEventViewModel = Omit<AgendaEvent, "rule"> & {
+  countdownLabel: string;
+  nextLabel: string;
+  hasSchedule: boolean;
+};
+
