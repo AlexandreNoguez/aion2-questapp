@@ -26,8 +26,19 @@ export function buildAgendaEvents(events: AgendaEvent[], now: Date | null): Agen
 }
 
 export const DEFAULT_AGENDA_FILTERS: AgendaFilters = {
-  search: "", category: "all", schedule: "all", sort: "default",
+  search: "", category: "all", schedule: "all", sort: "next",
 };
+
+export function parseAgendaFilters(value: unknown): AgendaFilters {
+  if (!value || typeof value !== "object") return { ...DEFAULT_AGENDA_FILTERS };
+  const stored = value as Record<string, unknown>;
+  return {
+    search: typeof stored.search === "string" ? stored.search : DEFAULT_AGENDA_FILTERS.search,
+    category: stored.category === "all" || stored.category === "Evento" || stored.category === "Chefe" || stored.category === "PvP" || stored.category === "Sistema" ? stored.category : DEFAULT_AGENDA_FILTERS.category,
+    schedule: stored.schedule === "all" || stored.schedule === "scheduled" || stored.schedule === "respawn" ? stored.schedule : DEFAULT_AGENDA_FILTERS.schedule,
+    sort: stored.sort === "default" || stored.sort === "next" || stored.sort === "name" ? stored.sort : DEFAULT_AGENDA_FILTERS.sort,
+  };
+}
 
 function normalizeSearch(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("pt-BR").trim();

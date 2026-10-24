@@ -2,13 +2,38 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AGENDA_EVENTS } from "../data/event-agenda";
-import { buildAgendaEvents, DEFAULT_AGENDA_FILTERS, filterAgendaEvents } from "../services/event-agenda";
+import { buildAgendaEvents, DEFAULT_AGENDA_FILTERS, filterAgendaEvents, parseAgendaFilters } from "../services/event-agenda";
 import type { AgendaFilters } from "../types";
+
+const STORAGE_KEY = "aion2-agenda-filters:v1";
 
 export function useEventAgenda() {
   // A primeira renderização é estável entre servidor e navegador.
   const [now, setNow] = useState<Date | null>(null);
   const [filters, setFilters] = useState<AgendaFilters>(DEFAULT_AGENDA_FILTERS);
+  const [preferencesLoaded, setPreferencesLoaded] = useState(false);
+
+  useEffect(() => {
+    const hydration = window.setTimeout(() => {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored) setFilters(parseAgendaFilters(JSON.parse(stored)));
+      } catch {
+        // A agenda continua utilizável com armazenamento indisponível ou inválido.
+      }
+      setPreferencesLoaded(true);
+    }, 0);
+    return () => window.clearTimeout(hydration);
+  }, []);
+
+  useEffect(() => {
+    if (!preferencesLoaded) return;
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
+    } catch {
+      // As preferências continuam funcionando em memória.
+    }
+  }, [filters, preferencesLoaded]);
 
   useEffect(() => {
     const update = () => setNow(new Date());
@@ -28,7 +53,7 @@ export function useEventAgenda() {
 
   return {
     events, filters, categories, total: allEvents.length,
-    hasActiveFilters: filters.search !== "" || filters.category !== "all" || filters.schedule !== "all" || filters.sort !== "default",
+    hasActiveFilters: filters.search !== DEFAULT_AGENDA_FILTERS.search || filters.category !== DEFAULT_AGENDA_FILTERS.category || filters.schedule !== DEFAULT_AGENDA_FILTERS.schedule || filters.sort !== DEFAULT_AGENDA_FILTERS.sort,
     actions: {
       setSearch: (search: string) => setFilters((current) => ({ ...current, search })),
       setCategory: (category: AgendaFilters["category"]) => setFilters((current) => ({ ...current, category })),
