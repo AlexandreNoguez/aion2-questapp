@@ -23,5 +23,5 @@ export const AGENDA_EVENTS: AgendaEvent[] = EVENT_PRESENTATION.map(({ scheduleId
   const content = GAME_CONTENT.find((entry) => entry.schedule.some((rule) => rule.id === scheduleId));
   const rule = content?.schedule.find((entry) => entry.id === scheduleId);
   if (!content || !rule) throw new Error(`Evento da agenda não encontrado: ${scheduleId}`);
-  return { id: rule.id, title: rule.title, href: `/conteudos/${content.id}`, imagePath, rule };
+  return { id: rule.id, title: rule.title, category: content.category, href: `/conteudos/${content.id}`, imagePath, rule };
 });

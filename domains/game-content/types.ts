@@ -59,14 +59,23 @@ export type GameContentViewModel = GameContent & {
 export type AgendaEvent = {
   id: string;
   title: string;
+  category: GameContent["category"];
   href: string;
   imagePath: string | null;
   rule: ScheduleRule;
 };
 
 export type AgendaEventViewModel = Omit<AgendaEvent, "rule"> & {
+  nextOccurrenceAt: number | null;
   countdownLabel: string;
   nextLabel: string;
   hasSchedule: boolean;
+};
+
+export type AgendaFilters = {
+  search: string;
+  category: "all" | GameContent["category"];
+  schedule: "all" | "scheduled" | "respawn";
+  sort: "default" | "next" | "name";
 };
 
