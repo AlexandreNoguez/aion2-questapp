@@ -2,14 +2,31 @@ import { Box, Button, Container, MenuItem, Paper, Stack, TextField, Typography }
 import type { EventAgendaModel } from "../hooks/use-event-agenda";
 import type { AgendaFilters } from "../types";
 import { EventAgendaCard } from "./event-agenda-card";
+import { useEventNotifications } from "./event-notifications";
 
 type Props = EventAgendaModel;
 
 export function EventAgenda({ events, filters, categories, total, hasActiveFilters, actions }: Props) {
+  const notifications = useEventNotifications();
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
       <Typography component="h1" sx={{ fontSize: { xs: 28, md: 36 }, fontWeight: 900, letterSpacing: "-.03em" }}>Agenda de eventos</Typography>
       <Typography color="text.secondary" sx={{ mt: 1 }}>Acompanhe a próxima ocorrência de cada evento. Horários em BRT (UTC−3).</Typography>
+      <Paper component="section" aria-label="Avisos de eventos" variant="outlined" sx={{ mt: 3, p: 2 }}>
+        <Typography fontWeight={800}>Avisos 10 minutos antes</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          Receba notificações do sistema para todos os eventos com horário definido, independentemente dos filtros. Mantenha o site aberto: pode estar em outra aba ou minimizado. Se o navegador suspender a aba, o aviso poderá atrasar; ao retomar, avisaremos apenas dos eventos que ainda não começaram e estão a até 10 minutos do início.
+        </Typography>
+        <Stack direction="row" gap={1} sx={{ mt: 2, flexWrap: "wrap" }}>
+          <Button variant="outlined" disabled={!notifications.available || notifications.busy} onClick={() => void notifications.toggle()}>
+            {notifications.enabled ? "Desativar avisos" : "Ativar avisos"}
+          </Button>
+          {notifications.enabled && <Button disabled={notifications.busy} onClick={() => void notifications.test()}>Testar notificação</Button>}
+        </Stack>
+        <Typography variant="body2" color="text.secondary" role="status" sx={{ mt: 1 }}>
+          {notifications.message || (!notifications.available ? "Os avisos exigem um navegador compatível e conexão HTTPS (ou localhost)." : notifications.enabled ? "Avisos ativados neste navegador." : "Avisos desativados.")}
+        </Typography>
+      </Paper>
       <Paper component="section" aria-label="Filtros da agenda" variant="outlined" sx={{ mt: 3, p: 2, bgcolor: "rgba(13,27,39,.72)" }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2,minmax(0,1fr))", lg: "2fr 1fr 1fr 1.3fr" }, gap: 2 }}>
           <TextField label="Buscar evento" placeholder="Nome do evento" size="small" value={filters.search} onChange={(event) => actions.setSearch(event.target.value)} />
