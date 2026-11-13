@@ -5,6 +5,9 @@ import { normalizeEquipmentDetails, normalizeProfile, normalizeSearch, safeImage
 import { createQueryCache } from "../domains/character/services/query-cache.ts";
 import { formatEquipmentStat, getGearReference, isCurrentBinding, parseGearMode } from "../domains/character/services/gear-reference.ts";
 import pvpSnapshot from "../domains/character/data/pvp-reference.json" with { type: "json" };
+import { calculateGearRating, rankFromScore } from "../domains/character/services/gear-rating.ts";
+import { parseEquipmentView, resolveCardMode } from "../domains/character/services/equipment-view.ts";
+import { requestEquipmentDetails } from "../domains/character/services/equipment-client.ts";
 
 const identity = { region: "la", serverId: 2403, characterId: "character-key=" };
 const info = {
@@ -220,4 +223,81 @@ test("PvP highlights match the official stat ID even when labels differ", () => 
 test("stored gear modes accept only PvE and PvP and recover from invalid values", () => {
   assert.equal(parseGearMode("pvp"), "pvp");
   for (const value of ["pve", null, "", "invalid", "PVP", { mode: "pvp" }]) assert.equal(parseGearMode(value), "pve");
+});
+
+test("rank boundaries include every tier without promoting a rounded score", () => {
+  for (const [score, expected] of [[0, "D"], [4.999, "D"], [5, "C"], [12, "B"], [22, "A"], [35, "S"], [55, "S+"], [89.999, "S+"], [90, "BiS"], [100, "BiS"]]) assert.equal(rankFromScore(score)?.label, expected);
+  for (const score of [NaN, Infinity, -1, 101]) assert.equal(rankFromScore(score), null);
+});
+
+test("ranks measure weighted binding coverage and do not count base stats, skills or stones", () => {
+  const guide = getGearReference("Templar", 1, "pve");
+  const details = normalizeEquipmentDetails(officialItemSchema.parse({
+    id: 1, name: "Sword", mainStats: [{ id: "STR", name: "Might", value: "99" }],
+    subStats: [{ id: "CombatSpeed", name: "Combat Speed", value: "10%" }, { id: "CombatSpeed", name: "Combat Speed", value: "10%" }],
+    magicStoneStat: [{ id: "STR", name: "Might", value: "100" }], subSkills: [{ id: 1, name: "Might", level: 20 }],
+  }));
+  const rating = calculateGearRating(details, guide);
+  assert.equal(rating.matched, 1);
+  assert.equal(rating.score, Math.round(100 / guide.options.reduce((sum, option) => sum + option.share, 0) * 1000) / 10);
+  assert.notEqual(rating.rank.label, "BiS");
+});
+
+test("full affinity reaches BiS while unsupported slots and failed data stay unranked", () => {
+  const guide = getGearReference("Templar", 1, "pve");
+  const details = normalizeEquipmentDetails(officialItemSchema.parse({ id: 1, name: "Sword", subStats: guide.options.map((option, index) => ({ id: String(index), name: option.name, value: "1" })) }));
+  assert.equal(calculateGearRating(details, guide).rank.label, "BiS");
+  assert.equal(calculateGearRating(details, guide).score, 100);
+  assert.equal(calculateGearRating(null, guide), null);
+  assert.equal(calculateGearRating(details, getGearReference("Templar", 41)), null);
+  assert.equal(calculateGearRating(details, getGearReference("Unknown", 1)), null);
+  details.subStats[0].value = "not-a-number";
+  assert.equal(calculateGearRating(details, guide), null);
+});
+
+test("a gear rank changes with its PvE/PvP reference and excludes zero rolls", () => {
+  const details = normalizeEquipmentDetails(officialItemSchema.parse({ id: 1, name: "Boots", subStats: [
+    { id: "AbnormalResistance", name: "Status Effect Resist", value: "5%" }, { id: "MoveSpeed", name: "Move Speed", value: "0%" },
+  ] }));
+  const pve = calculateGearRating(details, getGearReference("Templar", 8, "pve"));
+  const pvp = calculateGearRating(details, getGearReference("Templar", 8, "pvp"));
+  assert.equal(pve.matched, 0);
+  assert.equal(pve.rank.label, "D");
+  assert.equal(pvp.matched, 1);
+  assert.ok(pvp.score > pve.score);
+});
+
+test("view preferences recover safely and a card override does not change other slots", () => {
+  assert.equal(parseEquipmentView("comparison"), "comparison");
+  assert.equal(parseEquipmentView("flip"), "flip");
+  for (const value of [null, "invalid", {}, "grid"]) assert.equal(parseEquipmentView(value), "grid");
+  assert.equal(resolveCardMode("pve", { 11: "pvp" }, 11), "pvp");
+  assert.equal(resolveCardMode("pve", { 11: "pvp" }, 12), "pve");
+  assert.equal(resolveCardMode("pvp", {}, 12), "pvp");
+});
+
+test("equipment requests are serialized, cached and skip cancelled queued requests", async () => {
+  const originalFetch = globalThis.fetch;
+  const requested = [];
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  globalThis.fetch = async (url) => {
+    requested.push(url);
+    if (url.endsWith("queue-a")) await gate;
+    return Response.json({ id: 1, name: "Test", subStats: [], fetchedAt: new Date().toISOString() });
+  };
+  try {
+    const controller = new AbortController();
+    const first = requestEquipmentDetails("queue-a", new AbortController().signal);
+    const cancelled = requestEquipmentDetails("queue-cancelled", controller.signal);
+    const rejected = assert.rejects(cancelled, { name: "AbortError" });
+    controller.abort();
+    const second = requestEquipmentDetails("queue-b", new AbortController().signal);
+    assert.equal(requested.length, 1);
+    release();
+    await Promise.all([first, second, rejected]);
+    assert.deepEqual(requested, ["/api/characters/equipment?queue-a", "/api/characters/equipment?queue-b"]);
+    await requestEquipmentDetails("queue-a", new AbortController().signal);
+    assert.equal(requested.length, 2);
+  } finally { globalThis.fetch = originalFetch; }
 });

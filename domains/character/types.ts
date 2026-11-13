@@ -24,6 +24,7 @@ export type CharacterSearch = {
 
 export type EquipmentGroup = "weapons" | "armor" | "accessories" | "arcana";
 export type GearMode = "pve" | "pvp";
+export type EquipmentView = "grid" | "comparison" | "flip";
 export type EquipmentItem = {
   id: number;
   slot: number;

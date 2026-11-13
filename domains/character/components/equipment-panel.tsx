@@ -1,10 +1,12 @@
 "use client";
 
-import { Alert, Box, Button, Chip, Divider, LinearProgress, Link, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import { Alert, Box, Button, Chip, Collapse, Divider, LinearProgress, Link, Stack, Typography } from "@mui/material";
 import { Check } from "lucide-react";
-import { useEquipmentDetails } from "../hooks/use-equipment-details";
 import { formatEquipmentStat, getGearReference, isCurrentBinding } from "../services/gear-reference";
-import type { CharacterIdentity, EquipmentItem, EquipmentStat, GearMode } from "../types";
+import type { EquipmentDetails, EquipmentItem, EquipmentStat, GearMode } from "../types";
+
+export type EquipmentState = { details: EquipmentDetails | null; loading: boolean; error: string | null; retry: () => void };
 
 function StatList({ title, stats }: { title: string; stats: EquipmentStat[] }) {
   if (!stats.length) return null;
@@ -17,12 +19,8 @@ function StatList({ title, stats }: { title: string; stats: EquipmentStat[] }) {
   </Box>;
 }
 
-type Props = { identity: CharacterIdentity; item: EquipmentItem; className: string; expanded: boolean; mode: GearMode };
-
-export function EquipmentPanel({ identity, item, className, expanded, mode }: Props) {
-  const { details, loading, error, retry } = useEquipmentDetails(identity, item, expanded);
-  const guide = getGearReference(className, item.slot, mode);
-  const modeLabel = mode === "pve" ? "PvE" : "PvP";
+export function EquipmentStats({ details, loading, error, retry, compact = false }: EquipmentState & { compact?: boolean }) {
+  const [fullStats, setFullStats] = useState(false);
   return (
     <Box>
       <Typography component="h4" variant="subtitle2" fontWeight={850}>Atributos da sua peça</Typography>
@@ -30,13 +28,24 @@ export function EquipmentPanel({ identity, item, className, expanded, mode }: Pr
       {error && <Alert severity="warning" sx={{ mt: 1.5 }} action={<Button size="small" color="inherit" onClick={retry}>Tentar novamente</Button>}>{error}</Alert>}
       {details && <Box>
         {(details.category || details.itemLevel !== null) && <Typography variant="caption" color="text.secondary">{[details.category, details.itemLevel !== null ? `Item level ${details.itemLevel}` : null].filter(Boolean).join(" · ")}</Typography>}
-        <StatList title="Atributos base" stats={details.mainStats} />
+        {!compact && <StatList title="Atributos base" stats={details.mainStats} />}
         <StatList title={`Gravações${details.soulBindRate !== null ? ` · Vínculo ${details.soulBindRate}%` : ""}`} stats={details.subStats} />
         {details.skills.length > 0 && <Box sx={{ mt: 2 }}><Typography component="h5" variant="body2" fontWeight={850}>Habilidades da peça</Typography>{details.skills.map((skill) => <Typography key={skill.id} color="text.secondary" variant="body2" sx={{ mt: .75 }}>{skill.name} +{skill.level}</Typography>)}</Box>}
-        <StatList title="Pedras equipadas" stats={details.stones} />
+        {!compact && <StatList title="Pedras equipadas" stats={details.stones} />}
+        {compact && <Box sx={{ mt: 1.5 }}><Button size="small" onClick={() => setFullStats((value) => !value)} aria-expanded={fullStats}>{fullStats ? "Ocultar atributos base e pedras" : "Ver atributos base e pedras"}</Button><Collapse in={fullStats}><StatList title="Atributos base" stats={details.mainStats} /><StatList title="Pedras equipadas" stats={details.stones} /></Collapse></Box>}
         {!details.mainStats.length && !details.subStats.length && !details.skills.length && !details.stones.length && <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>O armory não informou atributos para esta peça.</Typography>}
       </Box>}
-      <Divider sx={{ my: 2.5 }} />
+    </Box>
+  );
+}
+
+type RecommendationProps = { item: EquipmentItem; className: string; mode: GearMode; details: EquipmentDetails | null };
+
+export function EquipmentRecommendations({ item, className, mode, details }: RecommendationProps) {
+  const guide = getGearReference(className, item.slot, mode);
+  const modeLabel = mode === "pve" ? "PvE" : "PvP";
+  return (
+    <Box>
       <Stack direction="row" gap={1} alignItems="center" flexWrap="wrap"><Typography component="h4" variant="subtitle2" fontWeight={850}>O que buscar · {guide.classLabel}</Typography><Chip size="small" label={`Referência ${modeLabel}`} variant="outlined" color="primary" /></Stack>
       {guide.status === "available" ? <Box>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>Atributos mais usados neste slot por {guide.sampleSize?.toLocaleString("pt-BR")} jogadores da classe na amostra {modeLabel}. Use como ponto de partida para comparar gravações.</Typography>
@@ -48,4 +57,8 @@ export function EquipmentPanel({ identity, item, className, expanded, mode }: Pr
       <Typography variant="caption" component="p" color="text.secondary" sx={{ mt: 1.5 }}>{guide.source.sampleDate ? `Amostra ${modeLabel} KR de ${guide.source.sampleDate.split("-").reverse().join("/")}.` : `Amostra ${modeLabel} KR consultada em ${guide.source.checkedDate.split("-").reverse().join("/")}; a fonte não informa a data da coleta.`} O patch Global pode diferir. A referência não separa funções de tanque, cura e dano nem considera os limites dos seus atributos. <Link href={guide.source.url} target="_blank" rel="noopener noreferrer" underline="hover">Fonte: {guide.source.label}</Link>.</Typography>
     </Box>
   );
+}
+
+export function EquipmentPanel({ state, ...props }: RecommendationProps & { state: EquipmentState }) {
+  return <Box><EquipmentStats {...state} /><Divider sx={{ my: 2.5 }} /><EquipmentRecommendations {...props} /></Box>;
 }

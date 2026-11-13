@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CharacterIdentity, EquipmentDetails, EquipmentItem } from "../types";
+import { requestEquipmentDetails } from "../services/equipment-client";
 
 export function useEquipmentDetails(identity: CharacterIdentity, item: EquipmentItem, enabled: boolean) {
   const [data, setData] = useState<{ key: string; value: EquipmentDetails; expires: number } | null>(null);
@@ -20,10 +21,8 @@ export function useEquipmentDetails(identity: CharacterIdentity, item: Equipment
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`/api/characters/equipment?${query}`, { signal: controller.signal, cache: "no-store" });
-        const payload = await response.json();
-        if (!response.ok) throw new Error(typeof payload?.error === "string" ? payload.error : "Não foi possível carregar os atributos desta peça.");
-        if (!controller.signal.aborted) setData({ key: query, value: payload as EquipmentDetails, expires: Date.now() + 300_000 });
+        const payload = await requestEquipmentDetails(query, controller.signal);
+        if (!controller.signal.aborted) setData({ key: query, value: payload, expires: Date.now() + 300_000 });
       } catch (failure) {
         if (!controller.signal.aborted) setError(failure instanceof Error && !(failure instanceof TypeError) && !(failure instanceof SyntaxError) ? failure.message : "Não foi possível conectar ao Companion. Tente novamente em instantes.");
       } finally {

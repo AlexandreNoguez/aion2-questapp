@@ -76,7 +76,8 @@ informações anteriores ao estado do jogo. Os endpoints oficiais usados pelo si
 da NCSOFT não possuem garantia de estabilidade para esta integração.
 
 Clique em um equipamento para expandir seus detalhes: atributos base, gravações,
-habilidades e pedras. A consulta da peça só ocorre quando o painel é aberto;
+habilidades e pedras. A consulta ocorre quando uma peça com referência se aproxima
+da área visível para calcular seu rank, ou quando seus detalhes são abertos;
 o servidor confere o ID e o slot contra o perfil consultado antes de buscar os
 detalhes. O cache de detalhes também dura até cinco minutos.
 
@@ -92,6 +93,22 @@ Use o seletor **PvE / PvP**, acima das peças, para alterar o foco de todos os
 painéis. A preferência fica na chave local `aion2-gear-mode:v1`. Trocar o foco
 atualiza as recomendações, mantendo os atributos reais da peça e sem gerar
 nova consulta de equipamento.
+
+Há três visualizações: **Grade**, com cards expansíveis; **Comparação**, com uma
+peça por linha e os atributos desejados à direita (abaixo no mobile); e **Virar
+cards**, com a peça na frente e a referência no verso. A escolha é salva em
+`aion2-equipment-view:v1`. Cada card também possui seu próprio toggle PvE/PvP;
+as escolhas individuais duram enquanto o perfil está aberto e são mantidas ao
+trocar layout ou aba. Os botões de aplicar a todas substituem essas escolhas.
+
+Os três layouts mostram **rank de afinidade** D, C, B, A, S, S+ ou BiS*. A nota
+é a cobertura ponderada dos seis atributos de referência nas gravações atuais,
+contando cada atributo positivo uma vez. Não mede os valores dos rolls,
+habilidades, pedras, encantamento ou força total, e não equivale à nota do Kisk.
+BiS* indica afinidade com esta referência, sem garantir o melhor item do jogo.
+Peças sem referência, falhas ou dados insuficientes não recebem nota inventada.
+As consultas de detalhes entram em fila no navegador, uma por vez, com cache
+limitado para evitar rajadas ao calcular vários ranks.
 
 O modo **PvP** usa uma amostra independente do Cielui, consultada em
 **13/11/2026**, em `domains/character/data/pvp-reference.json`. A coleta consultou
@@ -109,8 +126,8 @@ de gravação da peça, sem confundir atributos base ou pedras com gravações.
 A referência não separa funções de cura/tanque/dano, não considera limites pessoais
 de atributos e pode diferir do patch Global. A disponibilidade de cada opção
 depende do item. Slots sem referência validada, incluindo cinto, runas, amuleto e
-Arcanas, mostram os dados reais sem inventar prioridades. Notas de gear e
-cálculos de reroll ainda não estão disponíveis.
+Arcanas, mostram os dados reais sem inventar prioridades. Avaliação completa
+de poder do gear e cálculos de reroll ainda não estão disponíveis.
 
 O código fica em `domains/character`, com rotas em `app/api/characters` e página em
 `app/(dashboard)/personagem`. O plano está em
