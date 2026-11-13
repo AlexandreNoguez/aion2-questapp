@@ -14,8 +14,8 @@ export function AppTopbar({ onOpenNavigation }: Props) {
             <Menu size={21} />
           </IconButton>
           <Box>
-            <Typography sx={{ fontWeight: 800, letterSpacing: "-.02em", lineHeight: 1.1 }}>Central de missões</Typography>
-            <Typography variant="caption" color="text.secondary">Checklist e guias do AION 2</Typography>
+            <Typography sx={{ fontWeight: 800, letterSpacing: "-.02em", lineHeight: 1.1 }}>AION 2 Companion</Typography>
+            <Typography variant="caption" color="text.secondary">Personagem, checklist e guias</Typography>
           </Box>
         </Stack>
         <Stack direction="row" spacing={1} alignItems="center" sx={{ color: "text.secondary" }}>

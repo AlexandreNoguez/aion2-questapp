@@ -7,6 +7,7 @@ import type { NavigationSection } from "@/config/navigation";
 const STORAGE_KEY = "aion2-shell:v1";
 
 type StoredShell = {
+  navigationVersion?: number;
   desktopCollapsed?: boolean;
   expandedSections?: NavigationSection["id"][];
 };
@@ -31,7 +32,7 @@ export function useAppShell(): { viewModel: AppShellViewModel; actions: AppShell
   const [desktopCollapsed, setDesktopCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Set<NavigationSection["id"]>>(
-    new Set(["checklist", "content"]),
+    new Set(["character", "checklist", "content"]),
   );
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -43,7 +44,8 @@ export function useAppShell(): { viewModel: AppShellViewModel; actions: AppShell
           const stored = JSON.parse(raw) as StoredShell;
           if (typeof stored.desktopCollapsed === "boolean") setDesktopCollapsed(stored.desktopCollapsed);
           if (Array.isArray(stored.expandedSections)) {
-            const valid = stored.expandedSections.filter((id): id is NavigationSection["id"] => id === "checklist" || id === "content");
+            const valid = stored.expandedSections.filter((id): id is NavigationSection["id"] => id === "checklist" || id === "content" || id === "character");
+            if (stored.navigationVersion !== 2 && !valid.includes("character")) valid.push("character");
             setExpandedSections(new Set(valid));
           }
         }
@@ -58,7 +60,7 @@ export function useAppShell(): { viewModel: AppShellViewModel; actions: AppShell
   useEffect(() => {
     if (!isHydrated) return;
     try {
-      const payload: StoredShell = { desktopCollapsed, expandedSections: [...expandedSections] };
+      const payload: StoredShell = { navigationVersion: 2, desktopCollapsed, expandedSections: [...expandedSections] };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     } catch {
       // The navigation remains usable when storage is unavailable.

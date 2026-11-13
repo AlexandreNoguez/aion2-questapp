@@ -1,6 +1,6 @@
-# AION 2 — Checklist
+# AION 2 — Companion
 
-Checklist responsivo de atividades diárias, semanais e eventos para AION 2. O progresso é salvo somente no `localStorage` do navegador.
+Companion responsivo para AION 2, com consulta de personagem e equipamentos, checklist e agenda de atividades. O progresso do checklist e o personagem favorito são salvos somente no `localStorage` do navegador.
 
 O usuário também pode selecionar uma das oito classes disponíveis no AION 2 Global; a preferência fica salva junto com o checklist.
 
@@ -50,6 +50,38 @@ persistentes e abre a agenda ao clicar. Ele não agenda envios com o site fechad
 Para isso, ainda será necessário implementar Web Push com assinaturas, chaves
 VAPID e um serviço de envio agendado no servidor.
 
-## Persistência
+## Personagem e equipamentos
+
+O módulo **Personagem**, em `/personagem`, consulta o armory oficial da NCSOFT para
+buscar personagens do AION 2 Global por região, servidor opcional e nome. Selecione
+um resultado para ver perfil, equipamentos agrupados por categoria e atributos.
+A busca inicial vem preenchida com Hadamiri, LA/Triniel, como exemplo.
+
+Use **Salvar como favorito** para guardar um personagem neste navegador. O favorito
+é consultado automaticamente ao voltar ao módulo, usando a chave
+`aion2-character:v1`. Não é necessário login, senha do jogo ou addon. Nomes e
+atributos usam o inglês disponibilizado pela fonte.
+
+As rotas `/api/characters/servers`, `/api/characters/search` e
+`/api/characters/profile` consultam somente os hosts fixos da NCSOFT. Há validação
+de entradas/respostas, timeout, espaçamento de chamadas, tratamento de `429` e
+cache limitado por processo (1 hora para servidores, 1 minuto para busca e
+5 minutos para perfil/equipamentos), com deduplicação de chamadas simultâneas.
+O botão **Atualizar equipamentos** respeita esse cache. Em implantações com várias
+instâncias, cada uma possui seu próprio cache; para tráfego elevado será necessário
+cache e controle de chamadas compartilhados.
+
+O horário mostrado é o da consulta feita pelo Companion. O armory pode apresentar
+informações anteriores ao estado do jogo. Os endpoints oficiais usados pelo site
+da NCSOFT não possuem garantia de estabilidade para esta integração. Atributos
+individuais dos itens, notas de gear e recomendações de upgrade não fazem parte
+desta primeira versão.
+
+O código fica em `domains/character`, com rotas em `app/api/characters` e página em
+`app/(dashboard)/personagem`. O plano está em
+[`docs/plans/character-module.md`](docs/plans/character-module.md).
+Para verificar contratos, normalização e cache: `npm run test:character`.
+
+## Persistência do checklist
 
 As marcações e a classe selecionada usam a chave versionada `aion2-checklist:v1`. Cada aba pode ser reiniciada separadamente, preservando o progresso da outra e a classe escolhida.

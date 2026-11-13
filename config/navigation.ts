@@ -8,6 +8,7 @@ import {
   PartyPopper,
   Repeat2,
   Swords,
+  Shield,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -19,7 +20,7 @@ export type NavigationItem = {
 };
 
 export type NavigationSection = {
-  id: "checklist" | "content";
+  id: "checklist" | "content" | "character";
   label: string;
   icon: LucideIcon;
   defaultHref: string;
@@ -27,6 +28,15 @@ export type NavigationSection = {
 };
 
 export const NAVIGATION_SECTIONS: NavigationSection[] = [
+  {
+    id: "character",
+    label: "Personagem",
+    icon: Shield,
+    defaultHref: "/personagem",
+    items: [
+      { label: "Perfil e equipamentos", href: "/personagem", icon: Shield, exact: true },
+    ],
+  },
   {
     id: "checklist",
     label: "Checklist",

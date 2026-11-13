@@ -10,6 +10,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint . --ignore-pattern .next",
+    "test:character": "node --experimental-strip-types --test tests/character.test.mjs",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
