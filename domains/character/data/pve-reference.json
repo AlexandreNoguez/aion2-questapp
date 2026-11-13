@@ -1,0 +1,172 @@
+{
+  "sourceUrl": "https://kisk.app/scoring",
+  "originalSourceUrl": "https://cielui.com/",
+  "sampleDate": "2026-10-19",
+  "checkedDate": "2026-11-12",
+  "mode": "pve",
+  "region": "kr",
+  "classes": {
+    "gladiator": {
+      "sampleSize": 838,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",99],["Precision",94],["Multi-hit Chance",94]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",99],["Precision",94]],
+        "Torso": [["Damage Boost",100],["Perfect Chance",95],["Attack",94],["Accuracy",18],["Defense increase",15],["Dexterity",11]],
+        "Pants": [["Attack increase",99],["Perfect Chance",94],["Damage Tolerance",87],["Attack",84],["Status Effect Resist",5],["Dexterity",5]],
+        "Helmet": [["Attack increase",99],["Double Chance",99],["Attack",91],["Incoming Heal",20],["Weapon Damage Tolerance",7],["Accuracy",5]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",100],["Attack",96],["Accuracy",19],["Defense increase",14],["Dexterity",9]],
+        "Gloves": [["Combat Speed",100],["Perfect Chance",95],["Attack",91],["Defense increase",10],["Accuracy",8],["Critical Hit",4]],
+        "Boots": [["Move Speed",100],["Perfect Chance",95],["Attack",91],["Defense increase",11],["Accuracy",9],["Dexterity",4]],
+        "Cape": [["Double Chance",100],["Attack increase",99],["Perfect Chance",94],["Attack",67],["Critical Damage Tolerance",12],["Weapon Damage Tolerance",7]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Precision",94],["Accuracy",63],["Critical Hit",42]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",94],["Accuracy",70],["Critical Hit",47]],
+        "Rings": [["Might",100],["Attack",99],["Precision",94],["Accuracy",55],["Critical Hit",46],["Block",12]],
+        "Bracelet": [["Destruction [Zikel]",100],["Time [Siel]",100],["Wisdom [Lumiel]",99],["Illusion [Kaisinel]",99],["Justice [Nezekan]",88],["Freedom [Vaizel]",61]]
+      }
+    },
+    "templar": {
+      "sampleSize": 727,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",99],["Precision",98],["Multi-hit Chance",92]],
+        "Guard": [["Combat Speed",100],["Might",100],["Weapon Damage Boost",100],["Damage Boost",99],["Multi-hit Chance",98],["Precision",98]],
+        "Torso": [["Damage Boost",100],["Perfect Chance",93],["Attack",93],["Dexterity",52],["Block",42],["Defense increase",27]],
+        "Pants": [["Attack increase",99],["Perfect Chance",93],["Damage Tolerance",91],["Attack",84],["Dexterity",18],["Endurance",14]],
+        "Helmet": [["Double Chance",100],["Attack increase",99],["Attack",92],["Dexterity",32],["Incoming Heal",30],["Endurance",15]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",100],["Attack",95],["Dexterity",50],["Block",35],["Defense increase",24]],
+        "Gloves": [["Combat Speed",100],["Attack",94],["Perfect Chance",93],["Dexterity",29],["Defense increase",20],["Critical Hit",15]],
+        "Boots": [["Move Speed",100],["Attack",94],["Perfect Chance",94],["Dexterity",24],["Defense increase",22],["Critical Hit",15]],
+        "Cape": [["Attack increase",100],["Double Chance",100],["Perfect Chance",94],["Attack",78],["Critical Damage Tolerance",14],["Dexterity",9]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Precision",98],["Accuracy",88],["Critical Hit",86]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",98],["Accuracy",93],["Critical Hit",89]],
+        "Rings": [["Might",100],["Precision",98],["Attack",98],["Block",53],["Critical Hit",51],["Accuracy",50]],
+        "Bracelet": [["Destruction [Zikel]",100],["Time [Siel]",100],["Wisdom [Lumiel]",97],["Illusion [Kaisinel]",94],["Justice [Nezekan]",83],["Space [Israphel]",54]]
+      }
+    },
+    "assassin": {
+      "sampleSize": 792,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",97],["Precision",93]],
+        "Guard": [["Damage Boost",100],["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Multi-hit Chance",99],["Precision",94]],
+        "Torso": [["Damage Boost",100],["Attack",98],["Perfect Chance",94],["Critical Hit",18],["Defense increase",17],["Accuracy",16]],
+        "Pants": [["Attack increase",100],["Damage Tolerance",95],["Perfect Chance",93],["Attack",89],["Accuracy",3],["Status Effect Resist",3]],
+        "Helmet": [["Attack increase",100],["Double Chance",100],["Attack",93],["Incoming Heal",23],["Weapon Damage Tolerance",4],["Accuracy",3]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",99],["Attack",98],["Defense increase",15],["Critical Hit",15],["Accuracy",10]],
+        "Gloves": [["Combat Speed",100],["Attack",96],["Perfect Chance",93],["Defense increase",6],["Critical Hit",6],["Accuracy",3]],
+        "Boots": [["Move Speed",100],["Attack",96],["Perfect Chance",95],["Defense increase",5],["Critical Hit",4],["Accuracy",4]],
+        "Cape": [["Attack increase",100],["Double Chance",99],["Perfect Chance",93],["Attack",75],["Critical Damage Tolerance",7],["Weapon Damage Tolerance",4]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Precision",93],["Critical Hit",69],["Accuracy",41]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",93],["Critical Hit",75],["Accuracy",47]],
+        "Rings": [["Might",100],["Attack",99],["Precision",93],["Critical Hit",47],["Accuracy",24]],
+        "Bracelet": [["Destruction [Zikel]",100],["Illusion [Kaisinel]",100],["Time [Siel]",100],["Wisdom [Lumiel]",99],["Justice [Nezekan]",84],["Death [Triniel]",69]]
+      }
+    },
+    "ranger": {
+      "sampleSize": 1158,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Precision",99],["Multi-hit Chance",98]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",99],["Precision",98]],
+        "Torso": [["Damage Boost",100],["Attack",97],["Perfect Chance",94],["Critical Hit",86],["Accuracy",67],["Defense increase",30]],
+        "Pants": [["Attack increase",100],["Damage Tolerance",97],["Perfect Chance",94],["Attack",93],["Critical Hit",40],["Accuracy",13]],
+        "Helmet": [["Double Chance",100],["Attack increase",99],["Attack",96],["Critical Hit",59],["Incoming Heal",54],["Accuracy",24]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",100],["Attack",98],["Critical Hit",87],["Accuracy",64],["Defense increase",26]],
+        "Gloves": [["Combat Speed",100],["Attack",97],["Perfect Chance",95],["Critical Hit",70],["Accuracy",32],["Defense increase",21]],
+        "Boots": [["Move Speed",100],["Attack",97],["Perfect Chance",94],["Critical Hit",69],["Accuracy",29],["Defense increase",21]],
+        "Cape": [["Double Chance",100],["Attack increase",99],["Perfect Chance",95],["Attack",87],["Critical Hit",28],["Critical Damage Tolerance",23]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Critical Hit",99],["Precision",99],["Accuracy",97]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Critical Hit",100],["Precision",99],["Accuracy",99]],
+        "Rings": [["Might",100],["Precision",99],["Attack",96],["Critical Hit",54],["Accuracy",21]],
+        "Bracelet": [["Destruction [Zikel]",100],["Time [Siel]",100],["Illusion [Kaisinel]",100],["Wisdom [Lumiel]",98],["Justice [Nezekan]",85],["Death [Triniel]",79]]
+      }
+    },
+    "sorcerer": {
+      "sampleSize": 774,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",99],["Precision",98]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",99],["Precision",95]],
+        "Torso": [["Damage Boost",100],["Attack",97],["Perfect Chance",94],["Critical Hit",75],["Accuracy",72],["Defense increase",58]],
+        "Pants": [["Attack increase",100],["Damage Tolerance",100],["Attack",96],["Perfect Chance",94],["Critical Hit",46],["Accuracy",35]],
+        "Helmet": [["Double Chance",100],["Attack increase",100],["Attack",98],["Incoming Heal",72],["Critical Hit",59],["Accuracy",44]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",100],["Attack",99],["Critical Hit",82],["Accuracy",70],["Defense increase",55]],
+        "Gloves": [["Combat Speed",100],["Attack",99],["Perfect Chance",94],["Critical Hit",71],["Accuracy",58],["Defense increase",45]],
+        "Boots": [["Move Speed",100],["Attack",98],["Perfect Chance",93],["Critical Hit",70],["Accuracy",54],["Defense increase",48]],
+        "Cape": [["Double Chance",100],["Attack increase",100],["Perfect Chance",95],["Attack",95],["Critical Damage Tolerance",48],["Critical Hit",33]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Critical Hit",99],["Precision",98],["Accuracy",98]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Critical Hit",100],["Accuracy",99],["Precision",98]],
+        "Rings": [["Might",100],["Precision",98],["Attack",86],["Critical Hit",11],["Accuracy",3]],
+        "Bracelet": [["Destruction [Zikel]",100],["Time [Siel]",100],["Illusion [Kaisinel]",100],["Wisdom [Lumiel]",99],["Justice [Nezekan]",83],["Death [Triniel]",73]]
+      }
+    },
+    "spiritmaster": {
+      "sampleSize": 528,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Precision",99],["Multi-hit Chance",97]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Precision",99],["Multi-hit Chance",97]],
+        "Torso": [["Damage Boost",100],["Perfect Chance",97],["Attack",96],["Accuracy",36],["Critical Hit",31],["Defense increase",24]],
+        "Pants": [["Attack increase",99],["Damage Tolerance",98],["Perfect Chance",96],["Attack",85],["Accuracy",8],["Critical Hit",7]],
+        "Helmet": [["Attack increase",100],["Double Chance",100],["Attack",90],["Incoming Heal",38],["Accuracy",10],["Critical Hit",9]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",99],["Attack",97],["Accuracy",33],["Critical Hit",30],["Defense increase",20]],
+        "Gloves": [["Combat Speed",100],["Perfect Chance",97],["Attack",94],["Critical Hit",17],["Defense increase",15],["Accuracy",14]],
+        "Boots": [["Move Speed",100],["Perfect Chance",96],["Attack",93],["Accuracy",16],["Critical Hit",15],["Defense increase",15]],
+        "Cape": [["Attack increase",99],["Double Chance",99],["Perfect Chance",97],["Attack",76],["Critical Damage Tolerance",12],["Accuracy",5]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Precision",99],["Accuracy",87],["Critical Hit",83]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",99],["Accuracy",89],["Critical Hit",89]],
+        "Rings": [["Might",100],["Precision",99],["Attack",97],["Critical Hit",34],["Accuracy",25]],
+        "Bracelet": [["Destruction [Zikel]",100],["Illusion [Kaisinel]",100],["Time [Siel]",100],["Wisdom [Lumiel]",98],["Justice [Nezekan]",90],["Freedom [Vaizel]",59]]
+      }
+    },
+    "cleric": {
+      "sampleSize": 856,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Precision",98],["Multi-hit Chance",97]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Multi-hit Chance",98],["Precision",98]],
+        "Torso": [["Damage Boost",100],["Attack",93],["Perfect Chance",90],["Critical Hit",57],["Defense increase",55],["Accuracy",48]],
+        "Pants": [["Attack increase",98],["Damage Tolerance",98],["Attack",90],["Perfect Chance",89],["Critical Hit",26],["Endurance",18]],
+        "Helmet": [["Double Chance",99],["Attack increase",99],["Attack",93],["Incoming Heal",76],["Critical Hit",32],["Accuracy",20]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",99],["Attack",95],["Critical Hit",62],["Accuracy",49],["Defense increase",49]],
+        "Gloves": [["Combat Speed",100],["Attack",95],["Perfect Chance",89],["Defense increase",44],["Critical Hit",43],["Accuracy",32]],
+        "Boots": [["Move Speed",100],["Attack",93],["Perfect Chance",91],["Defense increase",46],["Critical Hit",40],["Accuracy",29]],
+        "Cape": [["Double Chance",99],["Attack increase",98],["Perfect Chance",90],["Attack",84],["Critical Damage Tolerance",39],["Weapon Damage Tolerance",19]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",99],["Precision",98],["Critical Hit",93],["Accuracy",91]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",98],["Critical Hit",96],["Accuracy",95]],
+        "Rings": [["Might",100],["Precision",98],["Attack",81],["Critical Hit",17],["Accuracy",8]],
+        "Bracelet": [["Illusion [Kaisinel]",100],["Time [Siel]",100],["Destruction [Zikel]",100],["Wisdom [Lumiel]",99],["Justice [Nezekan]",77],["Death [Triniel]",68]]
+      }
+    },
+    "chanter": {
+      "sampleSize": 656,
+      "slots": {
+        "Weapon": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",99],["Precision",97],["Multi-hit Chance",93]],
+        "Guard": [["Weapon Damage Boost",100],["Combat Speed",100],["Might",100],["Damage Boost",100],["Precision",97],["Multi-hit Chance",97]],
+        "Torso": [["Damage Boost",100],["Attack",96],["Perfect Chance",95],["Defense increase",32],["Accuracy",27],["Critical Hit",19]],
+        "Pants": [["Attack increase",99],["Damage Tolerance",96],["Perfect Chance",94],["Attack",85],["Accuracy",6],["Endurance",5]],
+        "Helmet": [["Double Chance",100],["Attack increase",100],["Attack",88],["Incoming Heal",53],["Weapon Damage Tolerance",10],["Accuracy",8]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",100],["Attack",94],["Defense increase",28],["Accuracy",24],["Critical Hit",18]],
+        "Gloves": [["Combat Speed",100],["Perfect Chance",95],["Attack",92],["Defense increase",19],["Accuracy",13],["Critical Hit",8]],
+        "Boots": [["Move Speed",100],["Perfect Chance",96],["Attack",92],["Defense increase",21],["Accuracy",12],["Critical Hit",9]],
+        "Cape": [["Attack increase",100],["Double Chance",100],["Perfect Chance",95],["Attack",76],["Critical Damage Tolerance",19],["Weapon Damage Tolerance",10]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",100],["Precision",97],["Accuracy",76],["Critical Hit",60]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",100],["Precision",97],["Accuracy",85],["Critical Hit",66]],
+        "Rings": [["Might",100],["Precision",97],["Attack",97],["Accuracy",38],["Critical Hit",37]],
+        "Bracelet": [["Time [Siel]",100],["Destruction [Zikel]",100],["Wisdom [Lumiel]",100],["Illusion [Kaisinel]",99],["Justice [Nezekan]",85],["Death [Triniel]",57]]
+      }
+    },
+    "fighter": {
+      "sampleSize": 578,
+      "slots": {
+        "Weapon": [["Combat Speed",100],["Might",100],["Damage Boost",98],["Precision",92],["Weapon Damage Boost",75],["Multi-hit Chance",64]],
+        "Guard": [["Combat Speed",100],["Might",100],["Damage Boost",99],["Precision",93],["Weapon Damage Boost",74],["Multi-hit Chance",65]],
+        "Torso": [["Damage Boost",100],["Perfect Chance",95],["Attack",92],["Accuracy",49],["Critical Hit",40],["Defense increase",12]],
+        "Pants": [["Attack increase",99],["Damage Tolerance",98],["Perfect Chance",94],["Attack",80],["Endurance",4],["Status Effect Resist",3]],
+        "Helmet": [["Attack increase",99],["Double Chance",99],["Attack",88],["Endurance",35],["Incoming Heal",19],["Dexterity",6]],
+        "Shoulders": [["Critical Damage Boost",100],["Double Chance",99],["Attack",91],["Accuracy",44],["Critical Hit",40],["Defense increase",12]],
+        "Gloves": [["Combat Speed",100],["Perfect Chance",96],["Attack",86],["Critical Hit",35],["Defense increase",8],["Dexterity",6]],
+        "Boots": [["Move Speed",100],["Perfect Chance",94],["Attack",82],["Defense increase",48],["Dexterity",4],["Critical Hit",4]],
+        "Cape": [["Double Chance",100],["Attack increase",99],["Attack",71],["Perfect Chance",54],["Accuracy",32],["Critical Damage Tolerance",7]],
+        "Necklace": [["Combat Speed",100],["Might",100],["Attack",97],["Precision",92],["Accuracy",71],["Critical Hit",64]],
+        "Earrings": [["Move Speed",100],["Might",100],["Attack",98],["Precision",92],["Accuracy",74],["Critical Hit",66]],
+        "Rings": [["Might",100],["Precision",92],["Attack",67],["Accuracy",21],["Critical Hit",19],["Block",5]],
+        "Bracelet": [["Destruction [Zikel]",100],["Time [Siel]",100],["Wisdom [Lumiel]",99],["Illusion [Kaisinel]",74],["Freedom [Vaizel]",67],["Justice [Nezekan]",46]]
+      }
+    }
+  }
+}

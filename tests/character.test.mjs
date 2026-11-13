@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { identitySchema, favoriteSchema, searchQuerySchema, officialEquipmentSchema, officialInfoSchema, officialSearchSchema } from "../domains/character/contracts.ts";
-import { normalizeProfile, normalizeSearch, safeImage } from "../domains/character/normalizers.ts";
+import { identitySchema, favoriteSchema, searchQuerySchema, officialEquipmentSchema, officialInfoSchema, officialItemSchema, officialSearchSchema, equipmentQuerySchema } from "../domains/character/contracts.ts";
+import { normalizeEquipmentDetails, normalizeProfile, normalizeSearch, safeImage } from "../domains/character/normalizers.ts";
 import { createQueryCache } from "../domains/character/services/query-cache.ts";
+import { formatEquipmentStat, getGearReference, isCurrentBinding, parseGearMode } from "../domains/character/services/gear-reference.ts";
+import pvpSnapshot from "../domains/character/data/pvp-reference.json" with { type: "json" };
 
 const identity = { region: "la", serverId: 2403, characterId: "character-key=" };
 const info = {
@@ -96,4 +98,126 @@ test("failed lookups are not cached and the number of cached entries stays bound
   assert.equal(await cache.get("a", 1000, async () => 1), 1);
   await cache.get("b", 1000, async () => 2);
   assert.equal(await cache.get("a", 1000, async () => 3), 3);
+});
+
+test("equipment detail queries require the actual slot and item ID", () => {
+  assert.equal(equipmentQuerySchema.safeParse({ ...identity, slot: "11", itemId: "310230053" }).success, true);
+  for (const extra of [{ slot: 0, itemId: 1 }, { slot: 11, itemId: -1 }, { slot: 1.5, itemId: 1 }, { slot: 11, itemId: "https://example.com" }]) assert.equal(equipmentQuerySchema.safeParse({ ...identity, ...extra }).success, false);
+});
+
+test("normalizes real equipped stat shapes, numeric values, skills and empty sections", () => {
+  const result = normalizeEquipmentDetails(officialItemSchema.parse({
+    id: 110230051, name: "Enraged Kromede Sword", soulBindRate: "49",
+    mainStats: [{ id: "WeaponFixingDamage", name: "Attack", minValue: "354", value: "442", extra: "146" }],
+    subStats: [{ id: "STR", name: "Might", value: 24 }],
+    subSkills: [{ id: 12240000, name: "Judgment", level: 1 }], magicStoneStat: null,
+  }));
+  assert.equal(formatEquipmentStat(result.mainStats[0]), "354–442 (+146)");
+  assert.equal(formatEquipmentStat({ ...result.mainStats[0], minValue: null, extra: "0" }), "442");
+  assert.equal(formatEquipmentStat({ ...result.mainStats[0], minValue: null, extra: "-2" }), "442 (-2)");
+  assert.equal(result.subStats[0].value, "24");
+  assert.equal(result.skills[0].level, "1");
+  assert.deepEqual(result.stones, []);
+  assert.equal(result.soulBindRate, "49");
+  assert.equal(officialItemSchema.safeParse({ id: 1, name: "Missing stats" }).success, false);
+});
+
+test("uses actual class and equipment slot, preserving differences between classes", () => {
+  const templar = getGearReference("Templar", 5);
+  const ranger = getGearReference("Ranger", 5);
+  assert.equal(templar.status, "available");
+  assert.equal(templar.classLabel, "Templário");
+  assert.ok(templar.options.some((option) => option.name === "Block"));
+  assert.ok(ranger.options.some((option) => option.name === "Critical Hit"));
+  assert.notDeepEqual(templar.options, ranger.options);
+  assert.equal(getGearReference("Templar", 8).options[0].name, "Move Speed");
+  assert.deepEqual(getGearReference("Templar", 11), getGearReference("Templar", 12));
+  assert.deepEqual(getGearReference("Templar", 13), getGearReference("Templar", 14));
+});
+
+test("does not invent recommendations for unknown classes, runes, belts or Arcanas", () => {
+  assert.equal(getGearReference("Unknown", 1).status, "unknown-class");
+  assert.equal(getGearReference("__proto__", 1).status, "unknown-class");
+  assert.equal(getGearReference("constructor", 1).classLabel, "constructor");
+  for (const slot of [17, 22, 23, 24, 41, 42, 45, 99]) {
+    assert.equal(getGearReference("Templar", slot).status, "unknown-slot");
+    assert.deepEqual(getGearReference("Templar", slot).options, []);
+  }
+});
+
+test("all nine supported class references contain valid descending sample percentages", () => {
+  for (const className of ["Gladiator", "Templar", "Assassin", "Ranger", "Sorcerer", "Spiritmaster", "Cleric", "Chanter", "Fighter"]) {
+    for (const slot of [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 15, 19]) {
+      const guide = getGearReference(className, slot);
+      assert.equal(guide.status, "available");
+      assert.ok(guide.sampleSize > 0);
+      assert.ok(guide.options.length >= 3);
+      guide.options.forEach((option, index) => {
+        assert.ok(option.name && option.share >= 0 && option.share <= 100);
+        if (index > 0) assert.ok(guide.options[index - 1].share >= option.share);
+      });
+    }
+  }
+});
+
+test("only marks a recommendation present when it is actually in the soul-binding lines", () => {
+  const result = normalizeEquipmentDetails(officialItemSchema.parse({
+    id: 1, name: "Sword", mainStats: [{ id: "Attack", name: "Attack", value: "100" }],
+    subStats: [{ id: "STR", name: "Might", value: "24" }],
+    magicStoneStat: [{ id: "Block", name: "Block", value: "+15" }],
+  }));
+  assert.equal(isCurrentBinding("Might", result), true);
+  assert.equal(isCurrentBinding("Attack", result), false);
+  assert.equal(isCurrentBinding("Block", result), false);
+});
+
+test("PvP uses its own source and stat priorities instead of the PvE sample", () => {
+  const pve = getGearReference("Templar", 8, "pve");
+  const pvp = getGearReference("Templar", 8, "pvp");
+  assert.notDeepEqual(pve.options, pvp.options);
+  assert.equal(pvp.mode, "pvp");
+  assert.equal(pvp.source.label, "Cielui");
+  assert.equal(pvp.source.sampleDate, null);
+  assert.ok(pvp.options.some((option) => option.id === "AbnormalResistance"));
+  assert.equal(pve.options.some((option) => option.name === "Status Effect Resist"), false);
+});
+
+test("PvP adoption percentages use the actual slot sample rather than the class total", () => {
+  const boots = pvpSnapshot.classes.templar.slots.Boots;
+  const expected = Math.round(boots.options[0][2] / boots.sampleSize * 1000) / 10;
+  const guide = getGearReference("Templar", 8, "pvp");
+  assert.equal(guide.sampleSize, boots.sampleSize);
+  assert.notEqual(guide.sampleSize, pvpSnapshot.classes.templar.sampleSize);
+  assert.equal(guide.options[0].share, expected);
+});
+
+test("all nine PvP classes have independent, valid references for the supported slots", () => {
+  for (const className of ["Gladiator", "Templar", "Assassin", "Ranger", "Sorcerer", "Spiritmaster", "Cleric", "Chanter", "Fighter"]) {
+    for (const slot of [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 15, 19]) {
+      const guide = getGearReference(className, slot, "pvp");
+      assert.equal(guide.status, "available");
+      assert.ok(guide.sampleSize > 0);
+      guide.options.forEach((option, index) => {
+        assert.ok(option.id && option.name && option.share >= 0 && option.share <= 100);
+        assert.equal(/[\uac00-\ud7af]/u.test(option.name), false, `Missing stat label for ${option.id}`);
+        if (index > 0) assert.ok(guide.options[index - 1].share >= option.share);
+      });
+    }
+  }
+  assert.equal(getGearReference("Unknown", 1, "pvp").status, "unknown-class");
+  assert.deepEqual(getGearReference("Templar", 41, "pvp").options, []);
+  assert.deepEqual(getGearReference("Templar", 11, "pvp"), getGearReference("Templar", 12, "pvp"));
+});
+
+test("PvP highlights match the official stat ID even when labels differ", () => {
+  const result = normalizeEquipmentDetails(officialItemSchema.parse({
+    id: 1, name: "Boots", subStats: [{ id: "AbnormalResistance", name: "Localized resistance", value: "5%" }],
+  }));
+  assert.equal(isCurrentBinding("Status Effect Resist", result, "AbnormalResistance"), true);
+  assert.equal(isCurrentBinding("Localized resistance", result, "DifferentID"), false);
+});
+
+test("stored gear modes accept only PvE and PvP and recover from invalid values", () => {
+  assert.equal(parseGearMode("pvp"), "pvp");
+  for (const value of ["pve", null, "", "invalid", "PVP", { mode: "pvp" }]) assert.equal(parseGearMode(value), "pve");
 });

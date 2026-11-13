@@ -1,6 +1,6 @@
 import type { z } from "zod";
-import type { officialEquipmentSchema, officialInfoSchema, officialSearchSchema, officialServersSchema } from "./contracts";
-import type { CharacterIdentity, CharacterProfile, CharacterSearch, CharacterServer, EquipmentGroup, Region } from "./types";
+import type { officialEquipmentSchema, officialInfoSchema, officialItemSchema, officialSearchSchema, officialServersSchema } from "./contracts";
+import type { CharacterIdentity, CharacterProfile, CharacterSearch, CharacterServer, EquipmentDetails, EquipmentGroup, Region } from "./types";
 
 export function factionName(race: number): string {
   return race === 1 ? "Elyos" : race === 2 ? "Asmodianos" : "Não informada";
@@ -67,6 +67,19 @@ export function normalizeProfile(
     stats: stats.filter((stat) => stat.type !== "ItemLevel").map((stat) => ({
       name: stat.name, type: stat.type, value: stat.value, bonuses: stat.statSecondList ?? [],
     })),
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
+export function normalizeEquipmentDetails(item: z.infer<typeof officialItemSchema>): EquipmentDetails {
+  const normalizeStats = (stats: z.infer<typeof officialItemSchema>["mainStats"]) => (stats ?? []).map((stat) => ({
+    id: stat.id, name: stat.name, value: stat.value, minValue: stat.minValue ?? null,
+    extra: stat.extra ?? null, exceed: stat.exceed ?? false,
+  }));
+  return {
+    id: item.id, name: item.name, category: item.categoryName ?? null, itemLevel: item.level ?? null,
+    soulBindRate: item.soulBindRate ?? null, mainStats: normalizeStats(item.mainStats),
+    subStats: normalizeStats(item.subStats), skills: item.subSkills ?? [], stones: normalizeStats(item.magicStoneStat),
     fetchedAt: new Date().toISOString(),
   };
 }

@@ -2,6 +2,8 @@
 
 Status: primeira versão implementada localmente. Nenhuma publicação realizada.
 
+Evolução: detalhes de itens e referências PvE documentados em [equipment-details.md](equipment-details.md).
+
 ## Objetivo
 
 Buscar um personagem do AION 2 Global e consultar seu perfil e equipamentos dentro do Companion, mantendo o visual e a organização por domínio do projeto.

@@ -1,0 +1,181 @@
+{
+  "sourceUrl": "https://cielui.com/stats/engrave",
+  "dataUrl": "https://cielui.com/api/item-stats?mode=pvp",
+  "sampleDate": null,
+  "checkedDate": "2026-11-13",
+  "mode": "pvp",
+  "region": "kr",
+  "classes": {
+    "gladiator": {
+      "sourceJob": "검성",
+      "sampleSize": 1450,
+      "slots": {
+        "Boots": {"sampleSize":1168,"options":[["MoveSpeed","이동 속도",1163],["AbnormalResistance","상태이상 저항",1009],["WIS","의지",706],["Perfect","완벽",362],["WeaponAccuracy","명중",252],["CON","체력",144]]},
+        "Bracelet": {"sampleSize":1383,"options":[["Time","시간[시엘]",1383],["Destruction","파괴[지켈]",1378],["Illusion","환상[카이시넬]",1363],["Wisdom","지혜[루미엘]",1284],["Freedom","자유[바이젤]",1203],["Justice","정의[네자칸]",923]]},
+        "Cape": {"sampleSize":1198,"options":[["DecreaseCriticalDamage","치명타 피해 내성",1039],["DecreaseWeaponDamage","무기 피해 내성",1018],["AbnormalResistance","상태이상 저항",998],["DamageRatio","공격력 증가",987],["HardHit","강타",697],["Perfect","완벽",371]]},
+        "Earrings": {"sampleSize":1145,"options":[["WeaponAccuracy","명중",1013],["INT","지식",1010],["WeaponFixingDamage","공격력",244],["Critical","치명타",66],["Block","막기",21],["HPMax","생명력",5]]},
+        "Gloves": {"sampleSize":1170,"options":[["CombatSpeed","전투 속도",1170],["AbnormalResistance","상태이상 저항",999],["IgnoreIronWall","철벽 관통",725],["WIS","의지",586],["Perfect","완벽",347],["WeaponAccuracy","명중",213]]},
+        "Helmet": {"sampleSize":1205,"options":[["DamageRatio","공격력 증가",1043],["AbnormalResistance","상태이상 저항",1022],["HardHit","강타",778],["AmplifyHpHealGet","받는 치유량",774],["WIS","의지",539],["WeaponAccuracy","명중",254]]},
+        "Weapon": {"sampleSize":1337,"options":[["CombatSpeed","전투 속도",1337],["STR","위력",1335],["AmplifyWeaponDamage","무기 피해 증폭",1330],["AGI","정확",1276],["AbnormalAccuracy","상태이상 적중",973],["AmplifyAllDamage","피해 증폭",837]]},
+        "Necklace": {"sampleSize":1143,"options":[["INT","지식",987],["WeaponAccuracy","명중",974],["WeaponFixingDamage","공격력",205],["Critical","치명타",65],["Block","막기",19],["ArmorEvasion","회피",6]]},
+        "Pants": {"sampleSize":1279,"options":[["DecreaseDamage","피해 내성",1252],["DamageRatio","공격력 증가",1084],["AbnormalResistance","상태이상 저항",1048],["WIS","의지",738],["HardHitResist","강타 저항",644],["Perfect","완벽",550]]},
+        "Rings": {"sampleSize":1144,"options":[["INT","지식",639],["WeaponAccuracy","명중",524],["WeaponFixingDamage","공격력",200],["Critical","치명타",40],["Block","막기",15],["ArmorDefense","방어력",4]]},
+        "Shoulders": {"sampleSize":1200,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",1193],["AbnormalResistance","상태이상 저항",1015],["IgnoreIronWall","철벽 관통",756],["WIS","의지",607],["WeaponAccuracy","명중",324],["CON","체력",218]]},
+        "Guard": {"sampleSize":1330,"options":[["CombatSpeed","전투 속도",1330],["STR","위력",1329],["AmplifyWeaponDamage","무기 피해 증폭",1328],["AGI","정확",1312],["AmplifyAllDamage","피해 증폭",1240],["AbnormalAccuracy","상태이상 적중",1124]]},
+        "Torso": {"sampleSize":1292,"options":[["AmplifyAllDamage","피해 증폭",1288],["AbnormalResistance","상태이상 저항",1076],["WIS","의지",895],["HardHitResist","강타 저항",723],["CON","체력",522],["WeaponAccuracy","명중",508]]}
+      }
+    },
+    "templar": {
+      "sourceJob": "수호성",
+      "sampleSize": 879,
+      "slots": {
+        "Boots": {"sampleSize":701,"options":[["MoveSpeed","이동 속도",695],["AbnormalResistance","상태이상 저항",611],["WIS","의지",392],["WeaponAccuracy","명중",125],["DefenseRatio","방어력 증가",115],["Perfect","완벽",110]]},
+        "Bracelet": {"sampleSize":838,"options":[["Time","시간[시엘]",836],["Destruction","파괴[지켈]",830],["Illusion","환상[카이시넬]",759],["Wisdom","지혜[루미엘]",712],["Freedom","자유[바이젤]",627],["Destiny","운명[마르쿠탄]",528]]},
+        "Cape": {"sampleSize":705,"options":[["DecreaseCriticalDamage","치명타 피해 내성",625],["AbnormalResistance","상태이상 저항",610],["DecreaseWeaponDamage","무기 피해 내성",592],["DamageRatio","공격력 증가",370],["WIS","의지",264],["HardHit","강타",244]]},
+        "Earrings": {"sampleSize":686,"options":[["INT","지식",603],["WeaponAccuracy","명중",479],["WeaponFixingDamage","공격력",116],["Block","막기",100],["Critical","치명타",57],["ArmorDefense","방어력",6]]},
+        "Gloves": {"sampleSize":704,"options":[["CombatSpeed","전투 속도",704],["AbnormalResistance","상태이상 저항",607],["WIS","의지",375],["IgnoreIronWall","철벽 관통",354],["WeaponAccuracy","명중",134],["Perfect","완벽",112]]},
+        "Helmet": {"sampleSize":720,"options":[["IronWall","철벽",623],["AbnormalResistance","상태이상 저항",611],["AmplifyHpHealGet","받는 치유량",451],["DamageRatio","공격력 증가",387],["WIS","의지",359],["HardHit","강타",278]]},
+        "Weapon": {"sampleSize":816,"options":[["CombatSpeed","전투 속도",816],["AmplifyWeaponDamage","무기 피해 증폭",815],["STR","위력",805],["AGI","정확",755],["AbnormalAccuracy","상태이상 적중",596],["AmplifyAllDamage","피해 증폭",525]]},
+        "Necklace": {"sampleSize":682,"options":[["INT","지식",591],["WeaponAccuracy","명중",460],["WeaponFixingDamage","공격력",104],["Block","막기",89],["Critical","치명타",52],["ArmorDefense","방어력",6]]},
+        "Pants": {"sampleSize":752,"options":[["DecreaseDamage","피해 내성",740],["IronWall","철벽",627],["AbnormalResistance","상태이상 저항",610],["WIS","의지",443],["DamageRatio","공격력 증가",433],["HardHitResist","강타 저항",226]]},
+        "Rings": {"sampleSize":696,"options":[["INT","지식",452],["WeaponAccuracy","명중",325],["WeaponFixingDamage","공격력",94],["Block","막기",65],["Critical","치명타",32],["ArmorDefense","방어력",5]]},
+        "Shoulders": {"sampleSize":723,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",697],["IronWall","철벽",622],["AbnormalResistance","상태이상 저항",597],["WIS","의지",346],["IgnoreIronWall","철벽 관통",328],["WeaponAccuracy","명중",116]]},
+        "Guard": {"sampleSize":820,"options":[["AmplifyWeaponDamage","무기 피해 증폭",820],["CombatSpeed","전투 속도",820],["STR","위력",819],["AGI","정확",796],["AmplifyAllDamage","피해 증폭",771],["AbnormalAccuracy","상태이상 적중",687]]},
+        "Torso": {"sampleSize":772,"options":[["AmplifyAllDamage","피해 증폭",766],["IronWall","철벽",654],["AbnormalResistance","상태이상 저항",631],["WIS","의지",513],["HardHitResist","강타 저항",239],["WeaponAccuracy","명중",226]]}
+      }
+    },
+    "assassin": {
+      "sourceJob": "살성",
+      "sampleSize": 1040,
+      "slots": {
+        "Boots": {"sampleSize":844,"options":[["MoveSpeed","이동 속도",832],["AbnormalResistance","상태이상 저항",670],["WIS","의지",465],["WeaponAccuracy","명중",424],["CON","체력",241],["WeaponFixingDamage","공격력",215]]},
+        "Bracelet": {"sampleSize":987,"options":[["Time","시간[시엘]",987],["Destruction","파괴[지켈]",987],["Illusion","환상[카이시넬]",982],["Wisdom","지혜[루미엘]",936],["Freedom","자유[바이젤]",808],["Death","죽음[트리니엘]",687]]},
+        "Cape": {"sampleSize":864,"options":[["DamageRatio","공격력 증가",771],["DecreaseCriticalDamage","치명타 피해 내성",663],["DecreaseWeaponDamage","무기 피해 내성",653],["AbnormalResistance","상태이상 저항",616],["HardHit","강타",525],["WIS","의지",256]]},
+        "Earrings": {"sampleSize":818,"options":[["INT","지식",714],["WeaponAccuracy","명중",597],["WeaponFixingDamage","공격력",443],["ArmorEvasion","회피",220],["Critical","치명타",135],["CriticalResist","치명타 저항",6]]},
+        "Gloves": {"sampleSize":848,"options":[["CombatSpeed","전투 속도",847],["AbnormalResistance","상태이상 저항",647],["IgnoreIronWall","철벽 관통",543],["WeaponAccuracy","명중",404],["WIS","의지",390],["Perfect","완벽",211]]},
+        "Helmet": {"sampleSize":853,"options":[["DamageRatio","공격력 증가",793],["AbnormalResistance","상태이상 저항",621],["HardHit","강타",557],["AmplifyHpHealGet","받는 치유량",453],["WIS","의지",375],["WeaponAccuracy","명중",346]]},
+        "Weapon": {"sampleSize":949,"options":[["CombatSpeed","전투 속도",948],["AmplifyWeaponDamage","무기 피해 증폭",947],["STR","위력",947],["AGI","정확",846],["AmplifyAllDamage","피해 증폭",670],["AbnormalAccuracy","상태이상 적중",595]]},
+        "Necklace": {"sampleSize":821,"options":[["INT","지식",681],["WeaponAccuracy","명중",571],["WeaponFixingDamage","공격력",428],["ArmorEvasion","회피",207],["Critical","치명타",134],["ArmorDefense","방어력",3]]},
+        "Pants": {"sampleSize":905,"options":[["DecreaseDamage","피해 내성",889],["DamageRatio","공격력 증가",808],["AbnormalResistance","상태이상 저항",643],["WIS","의지",423],["WeaponAccuracy","명중",355],["HardHitResist","강타 저항",303]]},
+        "Rings": {"sampleSize":820,"options":[["INT","지식",478],["WeaponAccuracy","명중",422],["WeaponFixingDamage","공격력",252],["ArmorEvasion","회피",181],["Critical","치명타",59],["Block","막기",4]]},
+        "Shoulders": {"sampleSize":870,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",868],["AbnormalResistance","상태이상 저항",652],["IgnoreIronWall","철벽 관통",541],["WIS","의지",417],["WeaponAccuracy","명중",414],["WeaponFixingDamage","공격력",261]]},
+        "Guard": {"sampleSize":929,"options":[["CombatSpeed","전투 속도",929],["STR","위력",928],["AmplifyWeaponDamage","무기 피해 증폭",927],["AGI","정확",877],["AmplifyAllDamage","피해 증폭",858],["AbnormalAccuracy","상태이상 적중",732]]},
+        "Torso": {"sampleSize":926,"options":[["AmplifyAllDamage","피해 증폭",925],["AbnormalResistance","상태이상 저항",661],["WIS","의지",512],["WeaponAccuracy","명중",468],["WeaponFixingDamage","공격력",461],["HardHitResist","강타 저항",353]]}
+      }
+    },
+    "ranger": {
+      "sourceJob": "궁성",
+      "sampleSize": 1437,
+      "slots": {
+        "Boots": {"sampleSize":1128,"options":[["MoveSpeed","이동 속도",1120],["AbnormalResistance","상태이상 저항",815],["WIS","의지",544],["DEX","민첩",467],["Perfect","완벽",443],["ArmorEvasion","회피",393]]},
+        "Bracelet": {"sampleSize":1375,"options":[["Destruction","파괴[지켈]",1373],["Time","시간[시엘]",1369],["Illusion","환상[카이시넬]",1336],["Wisdom","지혜[루미엘]",1250],["Death","죽음[트리니엘]",1031],["Freedom","자유[바이젤]",1022]]},
+        "Cape": {"sampleSize":1148,"options":[["DamageRatio","공격력 증가",952],["DecreaseCriticalDamage","치명타 피해 내성",854],["DecreaseWeaponDamage","무기 피해 내성",831],["AbnormalResistance","상태이상 저항",761],["HardHit","강타",596],["Perfect","완벽",435]]},
+        "Earrings": {"sampleSize":1082,"options":[["INT","지식",701],["WeaponFixingDamage","공격력",634],["WeaponAccuracy","명중",598],["ArmorEvasion","회피",520],["Critical","치명타",457],["CriticalResist","치명타 저항",114]]},
+        "Gloves": {"sampleSize":1122,"options":[["CombatSpeed","전투 속도",1119],["AbnormalResistance","상태이상 저항",810],["IgnoreIronWall","철벽 관통",640],["WIS","의지",460],["DEX","민첩",445],["Perfect","완벽",432]]},
+        "Helmet": {"sampleSize":1150,"options":[["DamageRatio","공격력 증가",1027],["AbnormalResistance","상태이상 저항",811],["AmplifyHpHealGet","받는 치유량",682],["HardHit","강타",653],["WIS","의지",515],["DEX","민첩",456]]},
+        "Weapon": {"sampleSize":1384,"options":[["STR","위력",1383],["CombatSpeed","전투 속도",1383],["AmplifyWeaponDamage","무기 피해 증폭",1382],["AGI","정확",1356],["AmplifyAllDamage","피해 증폭",1348],["AdditionalHitRate","다단 히트 적중",1197]]},
+        "Necklace": {"sampleSize":1092,"options":[["INT","지식",677],["WeaponFixingDamage","공격력",625],["WeaponAccuracy","명중",609],["ArmorEvasion","회피",500],["Critical","치명타",423],["CriticalResist","치명타 저항",100]]},
+        "Pants": {"sampleSize":1211,"options":[["DecreaseDamage","피해 내성",1178],["DamageRatio","공격력 증가",1012],["AbnormalResistance","상태이상 저항",822],["WIS","의지",541],["Perfect","완벽",521],["DEX","민첩",486]]},
+        "Rings": {"sampleSize":1082,"options":[["ArmorEvasion","회피",426],["INT","지식",321],["WeaponFixingDamage","공격력",298],["WeaponAccuracy","명중",273],["Critical","치명타",125],["CriticalResist","치명타 저항",78]]},
+        "Shoulders": {"sampleSize":1152,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",1142],["AbnormalResistance","상태이상 저항",813],["IgnoreIronWall","철벽 관통",643],["WIS","의지",539],["DEX","민첩",462],["WeaponAccuracy","명중",413]]},
+        "Guard": {"sampleSize":1303,"options":[["CombatSpeed","전투 속도",1303],["AmplifyWeaponDamage","무기 피해 증폭",1301],["STR","위력",1300],["AmplifyAllDamage","피해 증폭",1245],["AGI","정확",1224],["AdditionalHitRate","다단 히트 적중",773]]},
+        "Torso": {"sampleSize":1235,"options":[["AmplifyAllDamage","피해 증폭",1233],["AbnormalResistance","상태이상 저항",858],["WIS","의지",658],["WeaponFixingDamage","공격력",555],["DEX","민첩",525],["WeaponAccuracy","명중",514]]}
+      }
+    },
+    "sorcerer": {
+      "sourceJob": "마도성",
+      "sampleSize": 816,
+      "slots": {
+        "Boots": {"sampleSize":639,"options":[["MoveSpeed","이동 속도",632],["AbnormalResistance","상태이상 저항",506],["WIS","의지",350],["WeaponAccuracy","명중",260],["CON","체력",257],["DefenseRatio","방어력 증가",239]]},
+        "Bracelet": {"sampleSize":771,"options":[["Destruction","파괴[지켈]",770],["Time","시간[시엘]",769],["Illusion","환상[카이시넬]",769],["Wisdom","지혜[루미엘]",713],["Freedom","자유[바이젤]",558],["Death","죽음[트리니엘]",544]]},
+        "Cape": {"sampleSize":653,"options":[["DamageRatio","공격력 증가",579],["DecreaseCriticalDamage","치명타 피해 내성",548],["DecreaseWeaponDamage","무기 피해 내성",527],["AbnormalResistance","상태이상 저항",494],["HardHit","강타",362],["WIS","의지",259]]},
+        "Earrings": {"sampleSize":613,"options":[["WeaponAccuracy","명중",571],["INT","지식",539],["WeaponFixingDamage","공격력",306],["Critical","치명타",156],["CriticalResist","치명타 저항",20],["ArmorEvasion","회피",11]]},
+        "Gloves": {"sampleSize":632,"options":[["CombatSpeed","전투 속도",631],["AbnormalResistance","상태이상 저항",502],["IgnoreIronWall","철벽 관통",399],["WIS","의지",318],["CON","체력",225],["DefenseRatio","방어력 증가",224]]},
+        "Helmet": {"sampleSize":641,"options":[["DamageRatio","공격력 증가",563],["AbnormalResistance","상태이상 저항",505],["AmplifyHpHealGet","받는 치유량",399],["HardHit","강타",397],["WIS","의지",339],["CON","체력",247]]},
+        "Weapon": {"sampleSize":783,"options":[["AmplifyWeaponDamage","무기 피해 증폭",783],["STR","위력",783],["CombatSpeed","전투 속도",783],["AGI","정확",769],["AmplifyAllDamage","피해 증폭",768],["AdditionalHitRate","다단 히트 적중",674]]},
+        "Necklace": {"sampleSize":614,"options":[["WeaponAccuracy","명중",560],["INT","지식",519],["WeaponFixingDamage","공격력",293],["Critical","치명타",160],["CriticalResist","치명타 저항",17],["HPMax","생명력",10]]},
+        "Pants": {"sampleSize":683,"options":[["DecreaseDamage","피해 내성",673],["DamageRatio","공격력 증가",605],["AbnormalResistance","상태이상 저항",506],["WIS","의지",326],["CON","체력",298],["HardHitResist","강타 저항",276]]},
+        "Rings": {"sampleSize":617,"options":[["INT","지식",214],["WeaponAccuracy","명중",114],["WeaponFixingDamage","공격력",73],["Critical","치명타",12],["CriticalResist","치명타 저항",8],["ArmorEvasion","회피",5]]},
+        "Shoulders": {"sampleSize":650,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",645],["AbnormalResistance","상태이상 저항",510],["IgnoreIronWall","철벽 관통",393],["WIS","의지",322],["WeaponAccuracy","명중",254],["CON","체력",226]]},
+        "Guard": {"sampleSize":739,"options":[["CombatSpeed","전투 속도",739],["AmplifyWeaponDamage","무기 피해 증폭",738],["STR","위력",736],["AGI","정확",722],["AmplifyAllDamage","피해 증폭",699],["AbnormalAccuracy","상태이상 적중",502]]},
+        "Torso": {"sampleSize":697,"options":[["AmplifyAllDamage","피해 증폭",697],["AbnormalResistance","상태이상 저항",523],["WIS","의지",387],["CON","체력",379],["WeaponAccuracy","명중",361],["WeaponFixingDamage","공격력",318]]}
+      }
+    },
+    "spiritmaster": {
+      "sourceJob": "정령성",
+      "sampleSize": 571,
+      "slots": {
+        "Boots": {"sampleSize":460,"options":[["MoveSpeed","이동 속도",455],["AbnormalResistance","상태이상 저항",393],["Perfect","완벽",274],["WIS","의지",249],["CON","체력",186],["WeaponAccuracy","명중",175]]},
+        "Bracelet": {"sampleSize":536,"options":[["Time","시간[시엘]",536],["Destruction","파괴[지켈]",533],["Illusion","환상[카이시넬]",528],["Wisdom","지혜[루미엘]",464],["Freedom","자유[바이젤]",441],["Justice","정의[네자칸]",367]]},
+        "Cape": {"sampleSize":465,"options":[["DamageRatio","공격력 증가",388],["DecreaseWeaponDamage","무기 피해 내성",380],["DecreaseCriticalDamage","치명타 피해 내성",376],["AbnormalResistance","상태이상 저항",365],["Perfect","완벽",257],["HardHit","강타",167]]},
+        "Earrings": {"sampleSize":459,"options":[["WeaponAccuracy","명중",433],["INT","지식",391],["WeaponFixingDamage","공격력",234],["Critical","치명타",98],["CriticalResist","치명타 저항",13],["ArmorDefense","방어력",8]]},
+        "Gloves": {"sampleSize":456,"options":[["CombatSpeed","전투 속도",456],["AbnormalResistance","상태이상 저항",364],["IgnoreIronWall","철벽 관통",284],["Perfect","완벽",261],["WIS","의지",221],["CON","체력",163]]},
+        "Helmet": {"sampleSize":463,"options":[["DamageRatio","공격력 증가",398],["AbnormalResistance","상태이상 저항",380],["AmplifyHpHealGet","받는 치유량",285],["WIS","의지",269],["CON","체력",199],["HardHit","강타",193]]},
+        "Weapon": {"sampleSize":535,"options":[["CombatSpeed","전투 속도",535],["STR","위력",533],["AmplifyWeaponDamage","무기 피해 증폭",532],["AGI","정확",518],["AmplifyAllDamage","피해 증폭",497],["AbnormalAccuracy","상태이상 적중",376]]},
+        "Necklace": {"sampleSize":465,"options":[["WeaponAccuracy","명중",426],["INT","지식",376],["WeaponFixingDamage","공격력",220],["Critical","치명타",88],["CriticalResist","치명타 저항",11],["ArmorEvasion","회피",5]]},
+        "Pants": {"sampleSize":475,"options":[["DecreaseDamage","피해 내성",463],["DamageRatio","공격력 증가",402],["AbnormalResistance","상태이상 저항",367],["Perfect","완벽",285],["WIS","의지",233],["HardHitResist","강타 저항",180]]},
+        "Rings": {"sampleSize":465,"options":[["WeaponAccuracy","명중",276],["INT","지식",269],["WeaponFixingDamage","공격력",104],["Critical","치명타",35],["ArmorDefense","방어력",6],["ArmorEvasion","회피",6]]},
+        "Shoulders": {"sampleSize":461,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",454],["AbnormalResistance","상태이상 저항",377],["IgnoreIronWall","철벽 관통",287],["WIS","의지",262],["CON","체력",195],["WeaponAccuracy","명중",183]]},
+        "Guard": {"sampleSize":509,"options":[["CombatSpeed","전투 속도",509],["STR","위력",506],["AmplifyWeaponDamage","무기 피해 증폭",505],["AGI","정확",494],["AmplifyAllDamage","피해 증폭",434],["AbnormalAccuracy","상태이상 적중",372]]},
+        "Torso": {"sampleSize":481,"options":[["AmplifyAllDamage","피해 증폭",478],["AbnormalResistance","상태이상 저항",384],["WIS","의지",277],["CON","체력",249],["WeaponAccuracy","명중",247],["HardHitResist","강타 저항",210]]}
+      }
+    },
+    "cleric": {
+      "sourceJob": "치유성",
+      "sampleSize": 971,
+      "slots": {
+        "Boots": {"sampleSize":718,"options":[["MoveSpeed","이동 속도",710],["AbnormalResistance","상태이상 저항",555],["DEX","민첩",437],["WIS","의지",349],["Restoration","재생",266],["Block","막기",228]]},
+        "Bracelet": {"sampleSize":917,"options":[["Time","시간[시엘]",917],["Illusion","환상[카이시넬]",908],["Destruction","파괴[지켈]",866],["Wisdom","지혜[루미엘]",750],["Justice","정의[네자칸]",505],["Space","공간[이스라펠]",479]]},
+        "Cape": {"sampleSize":728,"options":[["DecreaseCriticalDamage","치명타 피해 내성",630],["DecreaseWeaponDamage","무기 피해 내성",587],["AbnormalResistance","상태이상 저항",565],["DEX","민첩",378],["WIS","의지",346],["DamageRatio","공격력 증가",301]]},
+        "Earrings": {"sampleSize":718,"options":[["CriticalResist","치명타 저항",346],["Block","막기",339],["WeaponAccuracy","명중",301],["WeaponFixingDamage","공격력",264],["INT","지식",188],["Critical","치명타",130]]},
+        "Gloves": {"sampleSize":718,"options":[["CombatSpeed","전투 속도",716],["AbnormalResistance","상태이상 저항",559],["DEX","민첩",433],["WIS","의지",380],["Restoration","재생",285],["Block","막기",236]]},
+        "Helmet": {"sampleSize":723,"options":[["AmplifyHpHealGet","받는 치유량",622],["AbnormalResistance","상태이상 저항",574],["DEX","민첩",449],["WIS","의지",378],["DamageRatio","공격력 증가",298],["IronWall","철벽",254]]},
+        "Weapon": {"sampleSize":934,"options":[["CombatSpeed","전투 속도",934],["STR","위력",932],["AmplifyWeaponDamage","무기 피해 증폭",931],["AmplifyAllDamage","피해 증폭",897],["AGI","정확",877],["AdditionalHitRate","다단 히트 적중",710]]},
+        "Necklace": {"sampleSize":712,"options":[["CriticalResist","치명타 저항",323],["Block","막기",316],["WeaponAccuracy","명중",268],["WeaponFixingDamage","공격력",248],["INT","지식",169],["Critical","치명타",121]]},
+        "Pants": {"sampleSize":767,"options":[["DecreaseDamage","피해 내성",760],["AbnormalResistance","상태이상 저항",577],["DEX","민첩",469],["WIS","의지",416],["DamageRatio","공격력 증가",344],["HardHitResist","강타 저항",287]]},
+        "Rings": {"sampleSize":723,"options":[["Block","막기",228],["CriticalResist","치명타 저항",177],["WeaponFixingDamage","공격력",115],["WeaponAccuracy","명중",75],["INT","지식",56],["ArmorEvasion","회피",26]]},
+        "Shoulders": {"sampleSize":729,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",585],["AbnormalResistance","상태이상 저항",576],["DEX","민첩",421],["WIS","의지",374],["Restoration","재생",289],["Block","막기",247]]},
+        "Guard": {"sampleSize":889,"options":[["AmplifyWeaponDamage","무기 피해 증폭",889],["CombatSpeed","전투 속도",889],["STR","위력",885],["AmplifyAllDamage","피해 증폭",842],["AGI","정확",840],["AdditionalHitRate","다단 히트 적중",656]]},
+        "Torso": {"sampleSize":780,"options":[["AmplifyAllDamage","피해 증폭",703],["AbnormalResistance","상태이상 저항",594],["DEX","민첩",457],["WIS","의지",387],["Restoration","재생",304],["HardHitResist","강타 저항",298]]}
+      }
+    },
+    "chanter": {
+      "sourceJob": "호법성",
+      "sampleSize": 826,
+      "slots": {
+        "Boots": {"sampleSize":639,"options":[["MoveSpeed","이동 속도",630],["AbnormalResistance","상태이상 저항",510],["WIS","의지",351],["Restoration","재생",222],["WeaponAccuracy","명중",178],["Perfect","완벽",151]]},
+        "Bracelet": {"sampleSize":783,"options":[["Time","시간[시엘]",783],["Destruction","파괴[지켈]",778],["Illusion","환상[카이시넬]",754],["Wisdom","지혜[루미엘]",735],["Freedom","자유[바이젤]",627],["Justice","정의[네자칸]",389]]},
+        "Cape": {"sampleSize":655,"options":[["DecreaseWeaponDamage","무기 피해 내성",538],["DecreaseCriticalDamage","치명타 피해 내성",536],["AbnormalResistance","상태이상 저항",510],["DamageRatio","공격력 증가",508],["HardHit","강타",353],["WIS","의지",254]]},
+        "Earrings": {"sampleSize":630,"options":[["WeaponAccuracy","명중",492],["INT","지식",480],["WeaponFixingDamage","공격력",250],["Critical","치명타",101],["Block","막기",64],["CriticalResist","치명타 저항",13]]},
+        "Gloves": {"sampleSize":644,"options":[["CombatSpeed","전투 속도",643],["AbnormalResistance","상태이상 저항",519],["WIS","의지",342],["IgnoreIronWall","철벽 관통",330],["Restoration","재생",219],["Perfect","완벽",167]]},
+        "Helmet": {"sampleSize":657,"options":[["DamageRatio","공격력 증가",526],["AbnormalResistance","상태이상 저항",506],["AmplifyHpHealGet","받는 치유량",486],["HardHit","강타",392],["WIS","의지",333],["IronWall","철벽",160]]},
+        "Weapon": {"sampleSize":777,"options":[["CombatSpeed","전투 속도",777],["STR","위력",775],["AmplifyWeaponDamage","무기 피해 증폭",772],["AGI","정확",721],["AmplifyAllDamage","피해 증폭",562],["AbnormalAccuracy","상태이상 적중",455]]},
+        "Necklace": {"sampleSize":636,"options":[["WeaponAccuracy","명중",485],["INT","지식",466],["WeaponFixingDamage","공격력",234],["Critical","치명타",88],["Block","막기",56],["ArmorDefense","방어력",8]]},
+        "Pants": {"sampleSize":678,"options":[["DecreaseDamage","피해 내성",667],["DamageRatio","공격력 증가",525],["AbnormalResistance","상태이상 저항",510],["WIS","의지",368],["HardHitResist","강타 저항",255],["Perfect","완벽",209]]},
+        "Rings": {"sampleSize":636,"options":[["INT","지식",304],["WeaponAccuracy","명중",249],["WeaponFixingDamage","공격력",139],["Critical","치명타",45],["Block","막기",39],["CriticalResist","치명타 저항",4]]},
+        "Shoulders": {"sampleSize":655,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",639],["AbnormalResistance","상태이상 저항",503],["WIS","의지",347],["IgnoreIronWall","철벽 관통",319],["Restoration","재생",208],["WeaponAccuracy","명중",186]]},
+        "Guard": {"sampleSize":749,"options":[["STR","위력",749],["CombatSpeed","전투 속도",749],["AmplifyWeaponDamage","무기 피해 증폭",748],["AGI","정확",717],["AmplifyAllDamage","피해 증폭",682],["AbnormalAccuracy","상태이상 적중",567]]},
+        "Torso": {"sampleSize":691,"options":[["AmplifyAllDamage","피해 증폭",687],["AbnormalResistance","상태이상 저항",526],["WIS","의지",390],["HardHitResist","강타 저항",272],["WeaponAccuracy","명중",236],["CON","체력",223]]}
+      }
+    },
+    "fighter": {
+      "sourceJob": "권성",
+      "sampleSize": 166,
+      "slots": {
+        "Boots": {"sampleSize":145,"options":[["MoveSpeed","이동 속도",143],["AbnormalResistance","상태이상 저항",91],["WIS","의지",74],["Perfect","완벽",61],["DefenseRatio","방어력 증가",52],["CON","체력",43]]},
+        "Bracelet": {"sampleSize":146,"options":[["Time","시간[시엘]",146],["Destruction","파괴[지켈]",145],["Wisdom","지혜[루미엘]",139],["Illusion","환상[카이시넬]",124],["Freedom","자유[바이젤]",93],["Justice","정의[네자칸]",77]]},
+        "Cape": {"sampleSize":138,"options":[["DamageRatio","공격력 증가",118],["DecreaseWeaponDamage","무기 피해 내성",91],["DecreaseCriticalDamage","치명타 피해 내성",89],["HardHit","강타",87],["AbnormalResistance","상태이상 저항",86],["WIS","의지",54]]},
+        "Earrings": {"sampleSize":146,"options":[["WeaponAccuracy","명중",94],["INT","지식",84],["WeaponFixingDamage","공격력",64],["Critical","치명타",18],["Block","막기",4],["ArmorDefense","방어력",3]]},
+        "Gloves": {"sampleSize":137,"options":[["CombatSpeed","전투 속도",137],["AbnormalResistance","상태이상 저항",86],["WIS","의지",73],["IgnoreIronWall","철벽 관통",61],["Perfect","완벽",51],["CON","체력",42]]},
+        "Helmet": {"sampleSize":144,"options":[["DamageRatio","공격력 증가",130],["HardHit","강타",102],["AbnormalResistance","상태이상 저항",96],["WIS","의지",77],["AmplifyHpHealGet","받는 치유량",62],["WeaponFixingDamage","공격력",39]]},
+        "Weapon": {"sampleSize":149,"options":[["CombatSpeed","전투 속도",149],["STR","위력",148],["AGI","정확",135],["AmplifyAllDamage","피해 증폭",132],["AmplifyWeaponDamage","무기 피해 증폭",130],["AdditionalHitRate","다단 히트 적중",85]]},
+        "Necklace": {"sampleSize":139,"options":[["WeaponAccuracy","명중",91],["INT","지식",71],["WeaponFixingDamage","공격력",57],["Critical","치명타",16],["ArmorEvasion","회피",4],["Block","막기",2]]},
+        "Pants": {"sampleSize":144,"options":[["DecreaseDamage","피해 내성",141],["DamageRatio","공격력 증가",127],["AbnormalResistance","상태이상 저항",79],["WIS","의지",65],["Perfect","완벽",63],["WeaponFixingDamage","공격력",54]]},
+        "Rings": {"sampleSize":144,"options":[["INT","지식",41],["WeaponAccuracy","명중",37],["WeaponFixingDamage","공격력",29],["Critical","치명타",4],["ArmorEvasion","회피",4],["Block","막기",2]]},
+        "Shoulders": {"sampleSize":146,"options":[["AmplifyCriticalDamage","치명타 피해 증폭",141],["AbnormalResistance","상태이상 저항",94],["WIS","의지",68],["IgnoreIronWall","철벽 관통",64],["WeaponFixingDamage","공격력",42],["CON","체력",41]]},
+        "Guard": {"sampleSize":152,"options":[["CombatSpeed","전투 속도",152],["STR","위력",151],["AmplifyAllDamage","피해 증폭",145],["AGI","정확",141],["AmplifyWeaponDamage","무기 피해 증폭",139],["AbnormalAccuracy","상태이상 적중",76]]},
+        "Torso": {"sampleSize":142,"options":[["AmplifyAllDamage","피해 증폭",139],["AbnormalResistance","상태이상 저항",84],["WIS","의지",70],["HardHitResist","강타 저항",53],["WeaponFixingDamage","공격력",53],["WeaponAccuracy","명중",49]]}
+      }
+    }
+  }
+}

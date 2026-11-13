@@ -62,8 +62,8 @@ Use **Salvar como favorito** para guardar um personagem neste navegador. O favor
 `aion2-character:v1`. Não é necessário login, senha do jogo ou addon. Nomes e
 atributos usam o inglês disponibilizado pela fonte.
 
-As rotas `/api/characters/servers`, `/api/characters/search` e
-`/api/characters/profile` consultam somente os hosts fixos da NCSOFT. Há validação
+As rotas `/api/characters/servers`, `/api/characters/search`,
+`/api/characters/profile` e `/api/characters/equipment` consultam somente os hosts fixos da NCSOFT. Há validação
 de entradas/respostas, timeout, espaçamento de chamadas, tratamento de `429` e
 cache limitado por processo (1 hora para servidores, 1 minuto para busca e
 5 minutos para perfil/equipamentos), com deduplicação de chamadas simultâneas.
@@ -73,9 +73,44 @@ cache e controle de chamadas compartilhados.
 
 O horário mostrado é o da consulta feita pelo Companion. O armory pode apresentar
 informações anteriores ao estado do jogo. Os endpoints oficiais usados pelo site
-da NCSOFT não possuem garantia de estabilidade para esta integração. Atributos
-individuais dos itens, notas de gear e recomendações de upgrade não fazem parte
-desta primeira versão.
+da NCSOFT não possuem garantia de estabilidade para esta integração.
+
+Clique em um equipamento para expandir seus detalhes: atributos base, gravações,
+habilidades e pedras. A consulta da peça só ocorre quando o painel é aberto;
+o servidor confere o ID e o slot contra o perfil consultado antes de buscar os
+detalhes. O cache de detalhes também dura até cinco minutos.
+
+O painel inclui uma referência **PvE** por classe e slot, com os seis atributos
+mais usados na amostra publicada pelo [Kisk](https://kisk.app/scoring), baseada
+em dados KR do Cielui de **19/10/2026**, conferidos em **12/11/2026**. Os dados
+numéricos ficam em `domains/character/data/pve-reference.json`; não há consultas
+ao Kisk durante o uso do app nem envio de dados de usuários a esse serviço.
+Não se trata de atualização automática: futuras revisões precisam conferir a
+fonte e atualizar o snapshot e suas datas.
+
+Use o seletor **PvE / PvP**, acima das peças, para alterar o foco de todos os
+painéis. A preferência fica na chave local `aion2-gear-mode:v1`. Trocar o foco
+atualiza as recomendações, mantendo os atributos reais da peça e sem gerar
+nova consulta de equipamento.
+
+O modo **PvP** usa uma amostra independente do Cielui, consultada em
+**13/11/2026**, em `domains/character/data/pvp-reference.json`. A coleta consultou
+`https://cielui.com/api/item-stats?mode=pvp&job=...` para cada uma das nove classes.
+Cada slot possui sua própria contagem de jogadores; a porcentagem é calculada
+com o número de jogadores daquele slot, não com o total da classe. O endpoint
+não informa a data da coleta original, por isso a interface mostra a data da
+consulta. Nenhum registro individual de jogador foi incluído no snapshot.
+As linhas PvP são identificadas pelo ID oficial de atributo para destacar
+gravações presentes mesmo quando o texto difere entre idiomas.
+
+As porcentagens indicam adoção na amostra, não bônus de atributo, chance de reroll
+ou ganho estimado. A marcação **Na gravação atual** considera somente as linhas
+de gravação da peça, sem confundir atributos base ou pedras com gravações.
+A referência não separa funções de cura/tanque/dano, não considera limites pessoais
+de atributos e pode diferir do patch Global. A disponibilidade de cada opção
+depende do item. Slots sem referência validada, incluindo cinto, runas, amuleto e
+Arcanas, mostram os dados reais sem inventar prioridades. Notas de gear e
+cálculos de reroll ainda não estão disponíveis.
 
 O código fica em `domains/character`, com rotas em `app/api/characters` e página em
 `app/(dashboard)/personagem`. O plano está em

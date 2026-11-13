@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { canonicalCharacterId, identitySchema, officialEquipmentSchema, officialInfoSchema, officialSearchSchema, officialServersSchema, regionSchema, searchQuerySchema } from "../contracts";
-import { normalizeProfile, normalizeSearch, normalizeServers } from "../normalizers";
+import { canonicalCharacterId, equipmentQuerySchema, identitySchema, officialEquipmentSchema, officialInfoSchema, officialItemSchema, officialSearchSchema, officialServersSchema, regionSchema, searchQuerySchema } from "../contracts";
+import { normalizeEquipmentDetails, normalizeProfile, normalizeSearch, normalizeServers } from "../normalizers";
 import { createQueryCache } from "./query-cache";
 
 const cache = createQueryCache();
@@ -11,7 +11,7 @@ export class ArmoryError extends Error {
   constructor(public status: number, message: string, public retryAfter?: number) { super(message); }
 }
 
-async function officialGet<T>(url: URL, schema: z.ZodType<T>): Promise<T> {
+async function officialGet<T>(url: URL, schema: z.ZodType<T, z.ZodTypeDef, unknown>): Promise<T> {
   if (blockedUntil > Date.now()) throw new ArmoryError(429, "O armory está limitando as consultas. Aguarde antes de tentar novamente.", Math.ceil((blockedUntil - Date.now()) / 1000));
   // Space calls to each host and bound the wait. No retries on upstream blocks.
   const scheduledAt = Math.max(Date.now(), hostSlots.get(url.host) ?? 0);
@@ -78,5 +78,21 @@ export async function getCharacterProfile(input: unknown) {
     }
     const equipment = await officialGet(gearUrl, officialEquipmentSchema);
     return normalizeProfile(info, equipment, identity);
+  });
+}
+
+export async function getEquipmentDetails(input: unknown) {
+  const query = equipmentQuerySchema.parse(input);
+  return cache.get(`equipment:${JSON.stringify(query)}`, 300_000, async () => {
+    const profile = await getCharacterProfile(query);
+    const item = profile.equipment.find((entry) => entry.slot === query.slot && entry.id === query.itemId);
+    if (!item) throw new ArmoryError(409, "Esta peça não está no perfil consultado. Atualize os equipamentos e tente novamente.");
+    const params = new URLSearchParams({
+      region: query.region, lang: "en-US", characterId: query.characterId, serverId: String(query.serverId),
+      id: String(item.id), slotPos: String(item.slot), enchantLevel: String(item.enchantLevel + item.exceedLevel),
+    });
+    const response = await officialGet(new URL(`https://aion2.plaync.com/api/character/equipment/item?${params}`), officialItemSchema);
+    if (response.id !== item.id) throw new ArmoryError(502, "O armory retornou um equipamento diferente do solicitado.");
+    return normalizeEquipmentDetails(response);
   });
 }

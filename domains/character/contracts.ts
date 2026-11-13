@@ -29,6 +29,11 @@ export const favoriteSchema = identitySchema.extend({
   serverName: z.string().min(1).max(64),
 });
 
+export const equipmentQuerySchema = identitySchema.extend({
+  slot: z.coerce.number().int().min(1).max(100),
+  itemId: z.coerce.number().int().positive().max(2_147_483_647),
+});
+
 const imageSchema = z.string().nullish();
 export const officialServersSchema = z.object({
   serverList: z.array(z.object({ serverId: serverIdSchema, serverName: z.string().min(1), raceId: z.number() })),
@@ -58,4 +63,25 @@ export const officialEquipmentSchema = z.object({
     id: z.number().int(), name: z.string().min(1), slotPos: z.number().int(), slotPosName: z.string(),
     grade: z.string(), icon: imageSchema, enchantLevel: z.number(), exceedLevel: z.number().nullish(),
   })).nullable() }),
+});
+
+const statValueSchema = z.union([z.string(), z.number()]).transform(String);
+const officialItemStatSchema = z.object({
+  id: statValueSchema,
+  name: z.string(),
+  value: statValueSchema,
+  minValue: statValueSchema.nullish(),
+  extra: statValueSchema.nullish(),
+  exceed: z.boolean().optional(),
+});
+
+export const officialItemSchema = z.object({
+  id: z.number().int().positive(), name: z.string().min(1),
+  categoryName: z.string().nullish(), level: z.number().nullish(), soulBindRate: statValueSchema.nullish(),
+  mainStats: z.array(officialItemStatSchema).nullish(),
+  subStats: z.array(officialItemStatSchema).nullish(),
+  subSkills: z.array(z.object({ id: statValueSchema, name: z.string(), level: statValueSchema })).nullish(),
+  magicStoneStat: z.array(officialItemStatSchema).nullish(),
+}).refine((item) => item.mainStats !== undefined || item.subStats !== undefined || item.subSkills !== undefined, {
+  message: "Item attributes are missing from the armory response.",
 });

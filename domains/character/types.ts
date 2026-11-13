@@ -23,6 +23,7 @@ export type CharacterSearch = {
 };
 
 export type EquipmentGroup = "weapons" | "armor" | "accessories" | "arcana";
+export type GearMode = "pve" | "pvp";
 export type EquipmentItem = {
   id: number;
   slot: number;
@@ -33,6 +34,28 @@ export type EquipmentItem = {
   icon: string | null;
   enchantLevel: number;
   exceedLevel: number;
+};
+
+export type EquipmentStat = {
+  id: string;
+  name: string;
+  value: string;
+  minValue: string | null;
+  extra: string | null;
+  exceed: boolean;
+};
+
+export type EquipmentDetails = {
+  id: number;
+  name: string;
+  category: string | null;
+  itemLevel: number | null;
+  soulBindRate: string | null;
+  mainStats: EquipmentStat[];
+  subStats: EquipmentStat[];
+  skills: { id: string; name: string; level: string }[];
+  stones: EquipmentStat[];
+  fetchedAt: string;
 };
 
 export type CharacterProfile = CharacterSummary & {
