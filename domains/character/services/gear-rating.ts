@@ -7,8 +7,8 @@ export const GEAR_RANKS = [
   { label: "B", minimum: 12, color: "#79b6ff" },
   { label: "A", minimum: 22, color: "#4bd6d0" },
   { label: "S", minimum: 35, color: "#f5c45e" },
-  { label: "S+", minimum: 55, color: "#d094ff" },
-  { label: "BiS", minimum: 90, color: "#8ce9ac" },
+  { label: "S+", minimum: 55, color: "#ffdc83" },
+  { label: "BiS", minimum: 90, color: "#ffe9aa" },
 ] as const;
 
 export function rankFromScore(score: number) {
@@ -19,6 +19,10 @@ export function rankFromScore(score: number) {
 type Guide = ReturnType<typeof getGearReference>;
 type Rank = (typeof GEAR_RANKS)[number];
 export type GearRating = { rank: Rank; score: number; matched: number; total: number };
+
+export function isGoldenRank(rank: Rank | null): boolean {
+  return rank !== null && (rank.label === "S" || rank.label === "S+" || rank.label === "BiS");
+}
 
 function numericValue(value: string): number | null {
   const cleaned = value.trim().replace(/%$/, "").replace(",", ".");

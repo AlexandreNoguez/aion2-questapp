@@ -110,6 +110,12 @@ Peças sem referência, falhas ou dados insuficientes não recebem nota inventad
 As consultas de detalhes entram em fila no navegador, uma por vez, com cache
 limitado para evitar rajadas ao calcular vários ranks.
 
+Os cards destacam o ícone da peça, a letra do rank e a porcentagem de afinidade,
+com barra de progresso e indicação do próximo rank. A moldura, o nome e o emblema
+usam dourado somente nos ranks **S, S+ e BiS***, independentemente da raridade.
+Ranks D a A usam tons mais discretos; uma peça Única com rank A não recebe o
+tratamento dourado. As transições respeitam a preferência de movimento reduzido.
+
 O modo **PvP** usa uma amostra independente do Cielui, consultada em
 **13/11/2026**, em `domains/character/data/pvp-reference.json`. A coleta consultou
 `https://cielui.com/api/item-stats?mode=pvp&job=...` para cada uma das nove classes.
